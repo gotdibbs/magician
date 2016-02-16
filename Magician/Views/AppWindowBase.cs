@@ -4,11 +4,11 @@ using System.Windows.Media;
 
 namespace Magician.Views
 {
-    public class AppWindowBase : MetroWindow
+    internal class AppWindowBase : MetroWindow
     {
-        public AppWindowBase()
+        internal AppWindowBase()
         {
-            Background = FindResource("MaterialDesignPaper") as Brush;
+            //Background = FindResource("MaterialDesignPaper") as Brush;
             BorderBrush = new SolidColorBrush(Color.FromRgb(119, 119, 119));
             BorderThickness = new Thickness(1);
         }

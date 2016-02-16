@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Magician.Presenters
 {
-    public class MainPresenter
+    internal class MainPresenter
     {
-        public MainWindow View { get; private set; }
+        internal MainWindow View { get; private set; }
 
-        public MainViewModel ViewModel { get; private set; }
+        internal MainViewModel ViewModel { get; private set; }
 
-        public MainPresenter(MainWindow view)
+        internal MainPresenter(MainWindow view)
         {
             View = view;
             ViewModel = new MainViewModel();

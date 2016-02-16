@@ -6,9 +6,9 @@ namespace Magician.Views
     /// <summary>
     /// Interaction logic for Recipes.xaml
     /// </summary>
-    public partial class RecipesTab : RecipeBase
+    internal partial class RecipesTab : RecipeBase
     {
-        public RecipesTab()
+        internal RecipesTab()
         {
             InitializeComponent();
 

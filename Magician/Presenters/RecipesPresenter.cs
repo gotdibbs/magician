@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Magician.Presenters
 {
-    public class RecipesPresenter
+    internal class RecipesPresenter
     {
-        public RecipesTab View { get; private set; }
+        internal RecipesTab View { get; private set; }
 
-        public RecipesViewModel ViewModel { get; private set; }
+        internal RecipesViewModel ViewModel { get; private set; }
 
-        public RecipesPresenter(RecipesTab view)
+        internal RecipesPresenter(RecipesTab view)
         {
             View = view;
             ViewModel = new RecipesViewModel();

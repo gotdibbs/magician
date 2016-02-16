@@ -1,11 +1,7 @@
-﻿using Magician.Views;
+﻿using Magician.Connect.Views;
 using Microsoft.Xrm.Tooling.Connector;
 using Microsoft.Xrm.Tooling.CrmConnectControl;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -37,11 +33,6 @@ namespace Magician.Presenters
         /// CRM Connection Manager 
         /// </summary>
         public CrmConnectionManager CrmConnectionMgr { get { return mgr; } }
-
-        /// <summary>
-        /// Raised when a connection to CRM has completed. 
-        /// </summary>
-        public event EventHandler ConnectionToCrmCompleted;
 
         public ConnectWindow View { get; set; }
 
@@ -77,8 +68,9 @@ namespace Magician.Presenters
             mgr = new CrmConnectionManager();
             // Pass a reference to the current UI or container control,  this is used to synchronize UI threads In the login control
             mgr.ParentControl = View.CrmLoginCtrl;
-            mgr.ClientId = "2ad88395-b77d-4561-9441-d0e40824f9bc";
-            mgr.RedirectUri = new Uri("app://5d3e90d6-aa8e-48a8-8f2c-58b45cc67315");
+            // Uncommenting the two properties below will allow for oauth which means we don't get back an orgserviceproxy :(
+            //mgr.ClientId = "2ad88395-b77d-4561-9441-d0e40824f9bc";
+            //mgr.RedirectUri = new Uri("app://5d3e90d6-aa8e-48a8-8f2c-58b45cc67315");
             // if you are using an unmanaged client, excel for example, and need to store the config in the users local directory
             // set this option to true. 
             mgr.UseUserLocalDirectoryForConfigStore = true;
@@ -258,12 +250,8 @@ namespace Magician.Presenters
                 }
             ));
 
-            // Notify Caller that we are done with success. 
-            if (ConnectionToCrmCompleted != null)
-            {
-                ConnectionToCrmCompleted(this, null);
-                View.Close();
-            }
+            View.DialogResult = true;
+            View.Close();
 
             resetUiFlag = false;
         }

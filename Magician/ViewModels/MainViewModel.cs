@@ -1,31 +1,56 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using Magician.Controls;
+using Magician.Models;
 using Magician.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows.Controls;
 
 namespace Magician.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    internal class MainViewModel : ViewModelBase
     {
+        private ObservableCollection<TabItem> _tabs;
         public ObservableCollection<TabItem> Tabs
         {
-            get
+            get { return _tabs; }
+            set { Set(ref _tabs, value); }
+        }
+
+        public MainViewModel()
+        {
+            Tabs = new ObservableCollection<TabItem>
             {
-                return new ObservableCollection<TabItem>
+                new RecipesTab
                 {
-                    new RecipesTab
-                    {
-                        Header = "Recipes",
-                        IsSelected = true
-                    }
-                };
-            }
+                    Header = "All Recipes",
+                    IsSelected = true
+                }
+            };
+
+            Messenger.Default.Register<LoadMessage>(this, (m) => OnLoadTab(m.Recipe));
+        }
+
+        public void OnLoadTab(RecipeViewModel recipe)
+        {
+            var assembly = Assembly.LoadFrom(recipe.PathToAssembly);
+
+            var type = assembly.GetType(recipe.TypeName);
+
+            var tab = (RecipeBase)Activator.CreateInstance(type);
+
+            tab.Header = recipe.Name;
+            tab.IsSelected = true;
+
+            AddTab(tab);
+        }
+
+        private void AddTab(RecipeBase recipe)
+        {
+            Tabs.Add(recipe);
+            RaisePropertyChanged(() => Tabs);
         }
     }
 }
