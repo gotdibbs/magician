@@ -23,10 +23,11 @@ namespace Magician.ViewModels
         {
             Tabs = new ObservableCollection<TabItem>
             {
-                new RecipesTab
+                new TabItem
                 {
                     Header = "All Recipes",
-                    IsSelected = true
+                    IsSelected = true,
+                    Content = new RecipesTab()
                 }
             };
 
@@ -39,17 +40,21 @@ namespace Magician.ViewModels
 
             var type = assembly.GetType(recipe.TypeName);
 
-            var tab = (RecipeBase)Activator.CreateInstance(type);
+            var control = (RecipeBase)Activator.CreateInstance(type);
+
+            var tab = new TabItem();
 
             tab.Header = recipe.Name;
             tab.IsSelected = true;
 
+            tab.Content = control;
+
             AddTab(tab);
         }
 
-        private void AddTab(RecipeBase recipe)
+        private void AddTab(TabItem tabWrappedControl)
         {
-            Tabs.Add(recipe);
+            Tabs.Add(tabWrappedControl);
             RaisePropertyChanged(() => Tabs);
         }
     }

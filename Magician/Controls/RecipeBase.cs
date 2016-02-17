@@ -1,22 +1,17 @@
-﻿using Magician.Connect.Views;
-using Microsoft.Xrm.Sdk;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Magician.Controls
 {
-    public class RecipeBase : TabItem
+    public class RecipeBase : UserControl
     {
-        public IOrganizationService Connect()
+        public RecipeBase()
         {
-            var connectionDialog = new ConnectWindow();
-            connectionDialog.ShowDialog();
-
-            if (connectionDialog.DialogResult == true)
+            Resources.MergedDictionaries.Add(new ResourceDictionary
             {
-                return connectionDialog.Presenter.CrmConnectionMgr.CrmSvc.OrganizationServiceProxy;
-            }
-
-            return null;
+                Source = new System.Uri("/Magician;component/Resources/ResourceDictionary.xaml", UriKind.Relative)
+            });
         }
     }
 }
