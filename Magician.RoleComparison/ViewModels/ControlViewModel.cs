@@ -81,6 +81,13 @@ namespace Magician.RoleCompare.ViewModels
             set { Set(ref _isComparing, value); }
         }
 
+        private bool _isBusy = true;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { Set(ref _isBusy, value); }
+        }
+
         public ICommand ConnectCommand { get; set; }
 
         public ICommand ExportCommand { get; set; }
@@ -114,6 +121,8 @@ namespace Magician.RoleCompare.ViewModels
                 return;
             }
 
+            IsBusy = true;
+
             _service = _connector.OrganizationServiceProxy;
 
             ConnectText = "Reconnect";
@@ -126,6 +135,8 @@ namespace Magician.RoleCompare.ViewModels
             var roles = await LoadRoles();
 
             Roles = new ObservableCollection<Role>(roles);
+
+            IsBusy = false;
         }
 
         private Task<IEnumerable<Role>> LoadRoles()
@@ -168,6 +179,8 @@ namespace Magician.RoleCompare.ViewModels
             {
                 return;
             }
+
+            IsBusy = true;
 
             var comparisons = new List<Comparison>();
 
@@ -215,6 +228,8 @@ namespace Magician.RoleCompare.ViewModels
             Comparisons = new ObservableCollection<Comparison>(comparisons);
 
             IsComparing = true;
+
+            IsBusy = false;
         }
 
         private Task<List<Privilege>> LoadPrivileges(Guid roleId)
@@ -272,6 +287,8 @@ namespace Magician.RoleCompare.ViewModels
 
         private async void Export()
         {
+            IsBusy = true;
+
             var temp = Path.GetTempPath();
             var tempFile = Path.Combine(temp, "comparison.csv");
 
@@ -295,6 +312,8 @@ namespace Magician.RoleCompare.ViewModels
             {
                 File.Delete(tempFile);
             }
+
+            IsBusy = false;
         }
 
         private Task WriteComparison(string tempFile)

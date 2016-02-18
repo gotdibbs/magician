@@ -49,11 +49,11 @@ namespace Magician.UsersByRole.ViewModels
             set { Set(ref _connectText, value); }
         }
 
-        private bool _isComparing = false;
-        public bool IsComparing
+        private bool _isBusy = true;
+        public bool IsBusy
         {
-            get { return _isComparing; }
-            set { Set(ref _isComparing, value); }
+            get { return _isBusy; }
+            set { Set(ref _isBusy, value); }
         }
 
         public ICommand ConnectCommand { get; set; }
@@ -86,6 +86,8 @@ namespace Magician.UsersByRole.ViewModels
                 return;
             }
 
+            IsBusy = true;
+
             _service = _connector.OrganizationServiceProxy;
 
             ConnectText = "Reconnect";
@@ -98,6 +100,8 @@ namespace Magician.UsersByRole.ViewModels
             var roles = await LoadRoles();
 
             Roles = new ObservableCollection<Role>(roles);
+
+            IsBusy = false;
         }
 
         private Task<IEnumerable<Role>> LoadRoles()
@@ -106,7 +110,7 @@ namespace Magician.UsersByRole.ViewModels
             {
                 var query = new QueryExpression("role");
                 query.NoLock = true;
-                query.ColumnSet = new ColumnSet(true);
+                query.ColumnSet = new ColumnSet("name", "roleid");
                 query.AddOrder("name", OrderType.Ascending);
                 var bu = query.AddLink("businessunit", "businessunitid", "businessunitid");
                 bu.LinkCriteria.AddCondition("parentbusinessunitid", ConditionOperator.Null);
@@ -130,9 +134,13 @@ namespace Magician.UsersByRole.ViewModels
                 return;
             }
 
+            IsBusy = true;
+
             var users = await RetrieveUsers();
 
             Users = new ObservableCollection<User>(users);
+
+            IsBusy = false;
         }
 
         private Task<IEnumerable<User>> RetrieveUsers()

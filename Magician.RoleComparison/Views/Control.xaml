@@ -7,9 +7,13 @@
              xmlns:magic="clr-namespace:Magician.Controls;assembly=Magician"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="600">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="4" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
@@ -23,7 +27,7 @@
             <Button Command="{Binding Path=ExportCommand}" IsEnabled="{Binding IsComparing, FallbackValue=False}" FontSize="14" Content="Export to Excel" />
         </StackPanel>
 
-        <Grid Grid.Row="1" Margin="8">
+        <Grid Grid.Row="2" Margin="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="4" />
@@ -71,5 +75,9 @@
                 </DataGrid.RowStyle>
             </DataGrid>
         </Grid>
+
+        <Border Grid.Row="1" Grid.RowSpan="2" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibility}, FallbackValue=Hidden}" Background="#66000000">
+            <ProgressBar IsIndeterminate="True" Margin="50"/>
+        </Border>
     </Grid>
 </magic:Trick>

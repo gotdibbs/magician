@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.RoleCompare", "Mag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.UsersByRole", "Magician.UsersByRole\Magician.UsersByRole.csproj", "{A6F67324-E9A2-42EA-A0F7-20AD4C9B60A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.ExportAssemblies", "Magician.ExportAssemblies\Magician.ExportAssemblies.csproj", "{7C7B1E0E-C559-4F5D-BAAC-6728DD100CB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A6F67324-E9A2-42EA-A0F7-20AD4C9B60A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6F67324-E9A2-42EA-A0F7-20AD4C9B60A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6F67324-E9A2-42EA-A0F7-20AD4C9B60A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C7B1E0E-C559-4F5D-BAAC-6728DD100CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C7B1E0E-C559-4F5D-BAAC-6728DD100CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C7B1E0E-C559-4F5D-BAAC-6728DD100CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C7B1E0E-C559-4F5D-BAAC-6728DD100CB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
