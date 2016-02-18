@@ -2,10 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Magician.RoleCompare.Views"
              xmlns:magic="clr-namespace:Magician.Controls;assembly=Magician"
              mc:Ignorable="d"
+             Background="{StaticResource MaterialDesignPaper}"
              d:DesignHeight="500" d:DesignWidth="600">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
@@ -63,10 +64,12 @@
                       HorizontalContentAlignment="Stretch"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Privilege Name" Width="Auto" Binding="{Binding Name}" SortDirection="Ascending" />
-                    <DataGridTextColumn Header="Privileges Match" Width="Auto" Binding="{Binding IsMatchYesNo}" />
+                    <DataGridTextColumn Header="Privileges Match" Width="Auto" Binding="{Binding IsMatchYesNo}" SortDirection="Ascending" />
+                    <DataGridTextColumn Header="Entity" Width="Auto" Binding="{Binding EntityName}" SortDirection="Ascending" />
+                    <DataGridTextColumn Header="Access Right" Width="Auto" Binding="{Binding AccessRight}" SortDirection="Ascending" />
                     <DataGridTextColumn Header="First Role Privilege Depth" Width="Auto" Binding="{Binding Depth1}" />
                     <DataGridTextColumn Header="Second Role Privilege Depth" Width="Auto" Binding="{Binding Depth2}" />
+                    <DataGridTextColumn Header="Privilege Name" Width="Auto" Binding="{Binding Name}" />
                 </DataGrid.Columns>
                 <DataGrid.RowStyle>
                     <Style TargetType="DataGridRow">

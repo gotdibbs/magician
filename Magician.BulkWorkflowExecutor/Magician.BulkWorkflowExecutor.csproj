@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A6F67324-E9A2-42EA-A0F7-20AD4C9B60A5}</ProjectGuid>
+    <ProjectGuid>{31B964D8-71FF-4EAC-8FE3-8C08F0347C98}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Magician.UsersByRole</RootNamespace>
-    <AssemblyName>Magician.UsersByRole</AssemblyName>
+    <RootNamespace>Magician.BulkWorkflowExecutor</RootNamespace>
+    <AssemblyName>Magician.BulkWorkflowExecutor</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -93,9 +93,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\ExecuteResponse.cs" />
+    <Compile Include="Models\View.cs" />
     <Compile Include="Models\UpdateHeaderMessage.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Workflow.cs" />
     <Compile Include="ViewModels\ControlViewModel.cs" />
     <Compile Include="Views\Control.xaml.cs">
       <DependentUpon>Control.xaml</DependentUpon>
@@ -142,8 +143,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>::xcopy /r /y "$(TargetDir)Magician.BulkWorkflowExecutor.dll" "$(SolutionDir)Magician\bin\debug\Tricks\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

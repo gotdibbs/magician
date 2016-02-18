@@ -138,7 +138,7 @@ namespace Magician.UsersByRole.ViewModels
 
             var users = await RetrieveUsers();
 
-            Users = new ObservableCollection<User>(users);
+            Users = new ObservableCollection<User>(users.OrderBy(u => u.FullName));
 
             IsBusy = false;
         }

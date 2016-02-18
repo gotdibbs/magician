@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Magician.ExportAssemblies.Views"
              xmlns:magic="clr-namespace:Magician.Controls;assembly=Magician"
              mc:Ignorable="d" 
+             Background="{StaticResource MaterialDesignPaper}"
              d:DesignHeight="500" d:DesignWidth="600">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />

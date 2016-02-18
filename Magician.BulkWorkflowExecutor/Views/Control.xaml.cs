@@ -1,16 +1,16 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Magician.BulkWorkflowExecutor.Models;
+using Magician.BulkWorkflowExecutor.ViewModels;
 using Magician.Controls;
 using Magician.ExtensionFramework;
-using Magician.ExportAssemblies.Models;
-using Magician.ExportAssemblies.ViewModels;
 using System.Windows.Controls;
 
-namespace Magician.ExportAssemblies.Views
+namespace Magician.BulkWorkflowExecutor.Views
 {
     /// <summary>
     /// Interaction logic for Control.xaml
     /// </summary>
-    [TrickDescription("Export Assemblies", "Selectively export any plugin or workflow assemblies registered in a Dynamics CRM Organization.")]
+    [TrickDescription("Bulk Workflow Executor", "Select a view of records, then pick an on-demand workflow on run against all records in that view.")]
     public partial class Control : Trick
     {
         public Control()

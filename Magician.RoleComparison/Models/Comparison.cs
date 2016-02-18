@@ -9,6 +9,10 @@ namespace Magician.RoleCompare.Models
 
         public string Name { get; set; }
 
+        public string AccessRight { get; set; }
+
+        public string EntityName { get; set; }
+
         public string Depth1 { get; set; }
 
         public string Depth2 { get; set; }

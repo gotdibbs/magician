@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.UsersByRole", "Mag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.ExportAssemblies", "Magician.ExportAssemblies\Magician.ExportAssemblies.csproj", "{7C7B1E0E-C559-4F5D-BAAC-6728DD100CB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.BulkWorkflowExecutor", "Magician.BulkWorkflowExecutor\Magician.BulkWorkflowExecutor.csproj", "{31B964D8-71FF-4EAC-8FE3-8C08F0347C98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7C7B1E0E-C559-4F5D-BAAC-6728DD100CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C7B1E0E-C559-4F5D-BAAC-6728DD100CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C7B1E0E-C559-4F5D-BAAC-6728DD100CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31B964D8-71FF-4EAC-8FE3-8C08F0347C98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31B964D8-71FF-4EAC-8FE3-8C08F0347C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31B964D8-71FF-4EAC-8FE3-8C08F0347C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31B964D8-71FF-4EAC-8FE3-8C08F0347C98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

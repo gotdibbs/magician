@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Magician.Views
 {
@@ -23,9 +24,19 @@ namespace Magician.Views
     {
         internal MainWindow()
         {
+            Application.Current.DispatcherUnhandledException += OnUnhandledException;
+
             InitializeComponent();
 
             new MainPresenter(this);
+        }
+
+        private void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            e.Handled = true;
+
+            ErrorControl.Visibility = Visibility.Visible;
+            ErrorControl.Message.Text = e.Exception.Message;
         }
     }
 }

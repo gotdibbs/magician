@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Magician.ExtensionFramework;
 using Magician.Models;
+using System;
 using System.Windows.Input;
 
 namespace Magician.ViewModels
@@ -10,10 +12,6 @@ namespace Magician.ViewModels
         public string Name { get; set; }
 
         public string Description { get; set; }
-
-        public string PathToAssembly { get; set; }
-
-        public string TypeName { get; set; }
 
         public ICommand LoadCommand { get; private set; }
 

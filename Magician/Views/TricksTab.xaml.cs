@@ -1,5 +1,7 @@
 ﻿using Magician.Controls;
 using Magician.Presenters;
+using Magician.ViewModels;
+using System.Collections.Generic;
 
 namespace Magician.Views
 {
@@ -8,11 +10,11 @@ namespace Magician.Views
     /// </summary>
     internal partial class TricksTab : Trick
     {
-        internal TricksTab()
+        internal TricksTab(List<TrickViewModel> tricks)
         {
             InitializeComponent();
 
-            new TricksPresenter(this);
+            new TricksPresenter(this, tricks);
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿using System;
-using GalaSoft.MvvmLight.Messaging;
-using Magician.Attributes;
+﻿using GalaSoft.MvvmLight.Messaging;
 using Magician.Controls;
+using Magician.ExtensionFramework;
 using Magician.RoleCompare.Models;
 using Magician.RoleCompare.ViewModels;
 using System.Windows.Controls;
@@ -11,7 +10,7 @@ namespace Magician.RoleCompare.Views
     /// <summary>
     /// Interaction logic for Control.xaml
     /// </summary>
-    [Trick("Role Compare", "Compare the privileges assigned to two different roles.")]
+    [TrickDescription("Role Compare", "Compare the privileges assigned to two different roles.")]
     public partial class Control : Trick
     {
         public Control()

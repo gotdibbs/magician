@@ -14,10 +14,10 @@ namespace Magician.Presenters
 
         internal TricksViewModel ViewModel { get; private set; }
 
-        internal TricksPresenter(TricksTab view)
+        internal TricksPresenter(TricksTab view, List<TrickViewModel> tricks)
         {
             View = view;
-            ViewModel = new TricksViewModel();
+            ViewModel = new TricksViewModel(tricks);
 
             view.DataContext = ViewModel;
         }

@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using Magician.Attributes;
 using Magician.Controls;
+using Magician.ExtensionFramework;
 using Magician.UsersByRole.Models;
 using Magician.UsersByRole.ViewModels;
 using System.Windows.Controls;
@@ -10,7 +10,7 @@ namespace Magician.UsersByRole.Views
     /// <summary>
     /// Interaction logic for Control.xaml
     /// </summary>
-    [Trick("Users by Role", "Select a security role, see all the users that have it.")]
+    [TrickDescription("Users by Role", "Select a security role, see all the users that have it.")]
     public partial class Control : Trick
     {
         public Control()

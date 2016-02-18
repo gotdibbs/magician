@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Magician.ExtensionFramework;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Magician.Controls
 {
-    public class Trick : UserControl
+    public class Trick : UserControl, ITrick
     {
         public Trick()
         {

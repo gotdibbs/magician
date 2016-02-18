@@ -13,24 +13,21 @@
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type vm:TrickViewModel}">
                 <wpf:Card Margin="4,4,4,0">
-                    <Grid HorizontalAlignment="Stretch"
-                          xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseLeftButtonDown">
-                                <i:InvokeCommandAction Command="{Binding Path=LoadCommand, Mode=OneWay}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Name}" FontWeight="Light" FontSize="18" Margin="8,4,8,4" Grid.Row="0" Grid.ColumnSpan="2"/>
-                        <TextBlock Text="{Binding Description}" Margin="8,0,8,4" Grid.Row="1" Grid.ColumnSpan="2" />
-                    </Grid>
+                    <Button Style="{DynamicResource MaterialDesignToolButton}"
+                            Height="Auto"
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            Command="{Binding Path=LoadCommand, Mode=OneWay}">
+                        <Grid HorizontalAlignment="Stretch"
+                            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Name}" Foreground="#222" FontWeight="Light" FontSize="18" Margin="8,4,8,4" Grid.Row="0" />
+                            <TextBlock Text="{Binding Description}" Foreground="#444" Margin="8,0,8,4" TextWrapping="Wrap" Grid.Row="1" />
+                        </Grid>
+                    </Button>
                 </wpf:Card>
             </DataTemplate>
         </ResourceDictionary>

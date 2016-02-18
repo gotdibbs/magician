@@ -118,6 +118,7 @@
     <Reference Include="System" />
     <Reference Include="System.Activities" />
     <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
@@ -153,15 +154,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Attributes\RecipeAttribute.cs" />
+    <Compile Include="Controls\ErrorOverlay.xaml.cs">
+      <DependentUpon>ErrorOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExtensionFramework\ITrickData.cs" />
+    <Compile Include="ExtensionFramework\TrickDescriptionAttribute.cs" />
+    <Compile Include="ExtensionFramework\ITrick.cs" />
     <Compile Include="Controls\Trick.cs" />
     <Compile Include="Models\LoadMessage.cs" />
     <Compile Include="Presenters\RecipesPresenter.cs" />
     <Compile Include="ViewModels\TricksViewModel.cs" />
     <Compile Include="ViewModels\TrickViewModel.cs" />
-    <Compile Include="Views\RecipesTab.xaml.cs">
-      <DependentUpon>RecipesTab.xaml</DependentUpon>
+    <Compile Include="Views\TricksTab.xaml.cs">
+      <DependentUpon>TricksTab.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\ErrorOverlay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\ResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,7 +192,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\RecipesTab.xaml">
+    <Page Include="Views\TricksTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,6 +238,28 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\logo_margin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tricks\CsvHelper.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tricks\Magician.ExportAssemblies.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tricks\Magician.RoleCompare.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Tricks\Magician.UsersByRole.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tricks\Magician.BulkWorkflowExecutor.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\sadrabbit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
