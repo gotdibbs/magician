@@ -11,12 +11,12 @@
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Application.Resources>
         <ResourceDictionary>
-            <DataTemplate DataType="{x:Type vm:RecipeViewModel}">
-                <wpf:Card Margin="4">
+            <DataTemplate DataType="{x:Type vm:TrickViewModel}">
+                <wpf:Card Margin="4,4,4,0">
                     <Grid HorizontalAlignment="Stretch"
                           xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
                                 <i:InvokeCommandAction Command="{Binding Path=LoadCommand, Mode=OneWay}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
@@ -28,8 +28,8 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Name}" FontWeight="Light" FontSize="18" Margin="8" Grid.Row="0" Grid.ColumnSpan="2"/>
-                        <TextBlock Text="{Binding Description}" Margin="8,0,8,8" Grid.Row="1" Grid.ColumnSpan="2" />
+                        <TextBlock Text="{Binding Name}" FontWeight="Light" FontSize="18" Margin="8,4,8,4" Grid.Row="0" Grid.ColumnSpan="2"/>
+                        <TextBlock Text="{Binding Description}" Margin="8,0,8,4" Grid.Row="1" Grid.ColumnSpan="2" />
                     </Grid>
                 </wpf:Card>
             </DataTemplate>

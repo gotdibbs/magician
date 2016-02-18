@@ -4,9 +4,9 @@ using System.Windows.Controls;
 
 namespace Magician.Controls
 {
-    public class RecipeBase : UserControl
+    public class Trick : UserControl
     {
-        public RecipeBase()
+        public Trick()
         {
             Resources.MergedDictionaries.Add(new ResourceDictionary
             {

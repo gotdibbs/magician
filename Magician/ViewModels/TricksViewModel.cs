@@ -13,32 +13,32 @@ using System.Windows;
 
 namespace Magician.ViewModels
 {
-    internal class RecipesViewModel : ViewModelBase
+    internal class TricksViewModel : ViewModelBase
     {
-        public ObservableCollection<RecipeViewModel> Recipes { get; set; }
+        public ObservableCollection<TrickViewModel> Tricks { get; set; }
 
-        public RecipesViewModel()
+        public TricksViewModel()
         {
-            LoadRecipes();
+            LoadTricks();
         }
 
-        public void LoadRecipes()
+        public void LoadTricks()
         {
-            if (!Directory.Exists("Plugins"))
+            if (!Directory.Exists("Tricks"))
             {
-                DisplayNoRecipesFound();
+                DisplayNoTricksFound();
                 return;
             }
 
-            var libraries = Directory.EnumerateFiles("Plugins", "*.dll").ToList();
+            var libraries = Directory.EnumerateFiles("Tricks", "*.dll").ToList();
 
             if (libraries.Count == 0)
             {
-                DisplayNoRecipesFound();
+                DisplayNoTricksFound();
                 return;
             }
 
-            var recipes = new List<RecipeViewModel>();
+            var tricks = new List<TrickViewModel>();
 
             var root = GetAssemblyPath();
 
@@ -49,17 +49,17 @@ namespace Magician.ViewModels
                 var library = Assembly.LoadFrom(absolutePath);
 
                 var validTypes = from type in library.GetTypes()
-                                 where Attribute.IsDefined(type, typeof(RecipeAttribute))
+                                 where Attribute.IsDefined(type, typeof(TrickAttribute))
                                  select type;
 
                 foreach (var type in validTypes)
                 {
-                    var myInterfaceType = typeof(RecipeBase);
+                    var myInterfaceType = typeof(Trick);
                     if (type != myInterfaceType && myInterfaceType.IsAssignableFrom(type))
                     {
-                        var attribute = (RecipeAttribute)Attribute.GetCustomAttribute(type, typeof(RecipeAttribute));
+                        var attribute = (TrickAttribute)Attribute.GetCustomAttribute(type, typeof(TrickAttribute));
 
-                        var recipe = new RecipeViewModel
+                        var Trick = new TrickViewModel
                         {
                             Name = attribute.Name,
                             Description = attribute.Description,
@@ -67,17 +67,19 @@ namespace Magician.ViewModels
                             TypeName = type.FullName
                         };
 
-                        recipes.Add(recipe);
+                        tricks.Add(Trick);
                     }
                 }
             }
 
-            Recipes = new ObservableCollection<RecipeViewModel>(recipes);
+            tricks.Sort(delegate (TrickViewModel t1, TrickViewModel t2) { return t1.Name.CompareTo(t2.Name); });
+
+            Tricks = new ObservableCollection<TrickViewModel>(tricks);
         }
 
-        private void DisplayNoRecipesFound()
+        private void DisplayNoTricksFound()
         {
-            MessageBox.Show("No recipes found, please install a recipe.");
+            MessageBox.Show("No Tricks found, please install a Trick.");
         }
 
         private string GetAssemblyPath()

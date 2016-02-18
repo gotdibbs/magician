@@ -4,15 +4,15 @@ using Magician.Presenters;
 namespace Magician.Views
 {
     /// <summary>
-    /// Interaction logic for Recipes.xaml
+    /// Interaction logic for Tricks.xaml
     /// </summary>
-    internal partial class RecipesTab : RecipeBase
+    internal partial class TricksTab : Trick
     {
-        internal RecipesTab()
+        internal TricksTab()
         {
             InitializeComponent();
 
-            new RecipesPresenter(this);
+            new TricksPresenter(this);
         }
     }
 }

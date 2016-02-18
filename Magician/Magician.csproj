@@ -154,11 +154,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Attributes\RecipeAttribute.cs" />
-    <Compile Include="Controls\RecipeBase.cs" />
+    <Compile Include="Controls\Trick.cs" />
     <Compile Include="Models\LoadMessage.cs" />
     <Compile Include="Presenters\RecipesPresenter.cs" />
-    <Compile Include="ViewModels\RecipesViewModel.cs" />
-    <Compile Include="ViewModels\RecipeViewModel.cs" />
+    <Compile Include="ViewModels\TricksViewModel.cs" />
+    <Compile Include="ViewModels\TrickViewModel.cs" />
     <Compile Include="Views\RecipesTab.xaml.cs">
       <DependentUpon>RecipesTab.xaml</DependentUpon>
     </Compile>
@@ -221,6 +221,16 @@
       <Project>{743a7beb-7fd8-4309-800e-6e3f0d755620}</Project>
       <Name>Magician.Connect</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon.png" />
+    <Resource Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\logo_margin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

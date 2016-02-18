@@ -9,6 +9,6 @@ namespace Magician.Models
 {
     internal class LoadMessage
     {
-        internal RecipeViewModel Recipe { get; set; }
+        internal TrickViewModel Trick { get; set; }
     }
 }

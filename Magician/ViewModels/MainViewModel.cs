@@ -25,26 +25,26 @@ namespace Magician.ViewModels
             {
                 new TabItem
                 {
-                    Header = "All Recipes",
+                    Header = "All Tricks",
                     IsSelected = true,
-                    Content = new RecipesTab()
+                    Content = new TricksTab()
                 }
             };
 
-            Messenger.Default.Register<LoadMessage>(this, (m) => OnLoadTab(m.Recipe));
+            Messenger.Default.Register<LoadMessage>(this, (m) => OnLoadTab(m.Trick));
         }
 
-        public void OnLoadTab(RecipeViewModel recipe)
+        public void OnLoadTab(TrickViewModel Trick)
         {
-            var assembly = Assembly.LoadFrom(recipe.PathToAssembly);
+            var assembly = Assembly.LoadFrom(Trick.PathToAssembly);
 
-            var type = assembly.GetType(recipe.TypeName);
+            var type = assembly.GetType(Trick.TypeName);
 
-            var control = (RecipeBase)Activator.CreateInstance(type);
+            var control = (Trick)Activator.CreateInstance(type);
 
             var tab = new TabItem();
 
-            tab.Header = recipe.Name;
+            tab.Header = Trick.Name;
             tab.IsSelected = true;
 
             tab.Content = control;

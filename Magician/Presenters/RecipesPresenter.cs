@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Magician.Presenters
 {
-    internal class RecipesPresenter
+    internal class TricksPresenter
     {
-        internal RecipesTab View { get; private set; }
+        internal TricksTab View { get; private set; }
 
-        internal RecipesViewModel ViewModel { get; private set; }
+        internal TricksViewModel ViewModel { get; private set; }
 
-        internal RecipesPresenter(RecipesTab view)
+        internal TricksPresenter(TricksTab view)
         {
             View = view;
-            ViewModel = new RecipesViewModel();
+            ViewModel = new TricksViewModel();
 
             view.DataContext = ViewModel;
         }

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Magician.Views"
         xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
         mc:Ignorable="d"
-        Title="Magician" Height="350" Width="525">
+        Icon="pack://application:,,,/Magician;component/Resources/logo_margin.png"
+        Title="Magician" Height="500" Width="600">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,9 +17,6 @@
     </Window.Resources>
     <Grid>
         <dragablz:TabablzControl Margin="0" ItemsSource="{Binding Tabs, Mode=TwoWay}" ShowDefaultCloseButton="True">
-            <dragablz:TabablzControl.InterTabController>
-                <dragablz:InterTabController />
-            </dragablz:TabablzControl.InterTabController>
         </dragablz:TabablzControl>
     </Grid>
 </local:AppWindowBase>

@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Magician.ViewModels
 {
-    internal class RecipeViewModel
+    internal class TrickViewModel
     {
         public string Name { get; set; }
 
@@ -17,7 +17,7 @@ namespace Magician.ViewModels
 
         public ICommand LoadCommand { get; private set; }
 
-        public RecipeViewModel()
+        public TrickViewModel()
         {
             LoadCommand = new RelayCommand(() => Load());
         }
@@ -26,7 +26,7 @@ namespace Magician.ViewModels
         {
             Messenger.Default.Send(new LoadMessage
             {
-                Recipe = this
+                Trick = this
             });
         }
     }
