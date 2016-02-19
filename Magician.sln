@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.ExportAssemblies",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.BulkWorkflowExecutor", "Magician.BulkWorkflowExecutor\Magician.BulkWorkflowExecutor.csproj", "{31B964D8-71FF-4EAC-8FE3-8C08F0347C98}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A2C4DBEC-6307-4A4F-AEAA-E338B590E379}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Building a Trick.md = Building a Trick.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

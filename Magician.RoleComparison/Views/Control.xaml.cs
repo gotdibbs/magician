@@ -17,7 +17,7 @@ namespace Magician.RoleCompare.Views
         {
             InitializeComponent();
 
-            Loaded += Control_Loaded;           
+            Loaded += Control_Loaded;
         }
 
         private void Control_Loaded(object sender, System.Windows.RoutedEventArgs e)
