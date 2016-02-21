@@ -102,6 +102,10 @@ namespace Magician.BulkWorkflowExecutor.ViewModels
 
         public ICommand ExecuteCommand { get; set; }
 
+        public ICommand OnUnloadedCommand { get; set; }
+
+        private bool _isUnloaded = false;
+
         private Connector _connector;
 
         private OrganizationServiceProxy _service;
@@ -116,6 +120,7 @@ namespace Magician.BulkWorkflowExecutor.ViewModels
 
             ConnectCommand = new RelayCommand(() => Connect());
             ExecuteCommand = new RelayCommand(() => Execute());
+            OnUnloadedCommand = new RelayCommand(() => OnUnloaded());
         }
 
         private async void Connect()
@@ -260,6 +265,13 @@ namespace Magician.BulkWorkflowExecutor.ViewModels
 
             do
             {
+                // Cancel if the tab has been closed
+                if (_isUnloaded == true)
+                {
+                    moreResults = false;
+                    continue;
+                }
+
                 var response = await ExecuteWorkflow(query, page, SelectedWorkflow.WorkflowId);
 
                 if (response.HasError)
@@ -350,6 +362,11 @@ namespace Magician.BulkWorkflowExecutor.ViewModels
 
                 return response;
             });
+        }
+
+        private void OnUnloaded()
+        {
+            _isUnloaded = true;
         }
     }
 }

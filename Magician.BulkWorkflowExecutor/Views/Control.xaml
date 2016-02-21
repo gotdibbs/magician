@@ -2,12 +2,18 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:Magician.BulkWorkflowExecutor.Views"
              xmlns:magic="clr-namespace:Magician.Controls;assembly=Magician"
              mc:Ignorable="d" 
              Background="{StaticResource MaterialDesignPaper}"
              d:DesignHeight="500" d:DesignWidth="600">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding OnUnloadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
     </UserControl.Resources>

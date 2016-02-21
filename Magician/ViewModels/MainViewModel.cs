@@ -18,7 +18,7 @@ namespace Magician.ViewModels
         private CompositionContainer _container;
 
         [ImportMany]
-        private List<Lazy<ITrick, ITrickData>> _tricks;
+        private List<ExportFactory<ITrick, ITrickData>> _tricks;
 
         private ObservableCollection<TabItem> _tabs;
         public ObservableCollection<TabItem> Tabs
@@ -33,7 +33,7 @@ namespace Magician.ViewModels
             var catalog = new DirectoryCatalog("Tricks");
             _container = new CompositionContainer(catalog);
 
-            this._container.ComposeParts(this);
+            _container.ComposeParts(this);
 
             var tricks = new List<TrickViewModel>();
 
@@ -72,7 +72,7 @@ namespace Magician.ViewModels
             tab.Header = selectedTrick.Name;
             tab.IsSelected = true;
 
-            tab.Content = trick.Value;
+            tab.Content = trick.CreateExport().Value;
 
             AddTab(tab);
         }

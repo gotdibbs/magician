@@ -15,8 +15,8 @@
                 <wpf:Card Margin="4,4,4,0">
                     <Button Style="{DynamicResource MaterialDesignToolButton}"
                             Height="Auto"
-                            HorizontalAlignment="Left"
-                            HorizontalContentAlignment="Left"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
                             Command="{Binding Path=LoadCommand, Mode=OneWay}">
                         <Grid HorizontalAlignment="Stretch"
                             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
