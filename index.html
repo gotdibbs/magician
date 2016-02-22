@@ -1,389 +1,216 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-    <meta name="theme-color" content="#2196F3">
-    <title>Material UI One Page Theme</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Magician</title>
 
-    <!-- CSS  -->
-    <link href="min/plugin-min.css" type="text/css" rel="stylesheet">
-    <link href="min/custom-min.css" type="text/css" rel="stylesheet" >
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-<body id="top" class="scrollspy">
+<body>
+  <div class="navbar-fixed">
+    <nav class="blue darken-2" role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Magician</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#about">About</a></li>
+          <li><a href="#tricks">Tricks</a></li>
+          <li><a href="#download">Download</a></li>
+          <li><a href="#contribute">Contribute</a></li>
+        </ul>
 
-<!-- Pre Loader -->
-<div id="loader-wrapper">
-    <div id="loader"></div>
- 
-    <div class="loader-section section-left"></div>
-    <div class="loader-section section-right"></div>
- 
-</div>
-
-<!--Navigation-->
- <div class="navbar-fixed">
-    <nav id="nav_f" class="default_color" role="navigation">
-        <div class="container">
-            <div class="nav-wrapper">
-            <a href="#" id="logo-container" class="brand-logo">MD Template</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="#intro">Service</a></li>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="https://github.com/joashp/material-design-template" target="_blank">Download</a></li>
-                </ul>
-                <ul id="nav-mobile" class="side-nav">
-                    <li><a href="#intro">Service</a></li>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="https://github.com/joashp/material-design-template" target="_blank">Download</a></li>
-                </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-            </div>
-        </div>
+        <ul id="nav-mobile" class="side-nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#tricks">Tricks</a></li>
+          <li><a href="#download">Download</a></li>
+          <li><a href="#contribute">Contribute</a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      </div>
+      <a href="https://github.com/gotdibbs/magician"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
     </nav>
-</div>
+  </div>
 
-<!--Hero-->
-<div class="section no-pad-bot" id="index-banner">
+  <div class="section">
     <div class="container">
-        <h1 class="text_h center header cd-headline letters type">
-            <span>I Love</span> 
-            <span class="cd-words-wrapper waiting">
-                <b class="is-visible">creating</b>
-                <b>designing</b>
-                <b>developing</b>
-            </span>
-        </h1>
-    </div>
-</div>
+      <div class="row center">
+        <img src="img/logo.png" class="magician-logo" />
+      </div>
 
-<!--Intro and service-->
-<div id="intro" class="section scrollspy">
+      <h1 class="header center">Magician</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">An extensible bag of tricks for Dynamics CRM administrators, customizers and developers.</h5>
+        <h5 class="header col s12 light"></h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="section blue-grey darken-3" id="about">
     <div class="container">
-        <div class="row">
-            <div  class="col s12">
-                <h2 class="center header text_h2"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span class="span_h2"> Phasellus  </span>vestibulum lorem risus, nec suscipit lorem <span class="span_h2"> laoreet quis.</span> </h2>
-            </div>
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block white-text">
+            <h2 class="center"><i class="material-icons">group_work</i></h2>
+            <h5 class="center">One App to Rule them All</h5>
 
-            <div  class="col s12 m4 l4">
-                <div class="center promo promo-example">
-                    <i class="mdi-image-flash-on"></i>
-                    <h5 class="promo-caption">Speeds up development</h5>
-                    <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
-                </div>
-            </div>
-            <div class="col s12 m4 l4">
-                <div class="center promo promo-example">
-                    <i class="mdi-social-group"></i>
-                    <h5 class="promo-caption">User Experience Focused</h5>
-                    <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                </div>
-            </div>
-            <div class="col s12 m4 l4">
-                <div class="center promo promo-example">
-                    <i class="mdi-hardware-desktop-windows"></i>
-                    <h5 class="promo-caption">Fully responsive</h5>
-                    <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
-                </div>
-            </div>
+            <p class="light center">Pick from out of the box tools, tools created by the community, or develop and install your own company specific tools, they can all be hosted under one roof.</p>
+          </div>
         </div>
-    </div>
-</div>
 
-<!--Work-->
-<div class="section scrollspy" id="work">
+        <div class="col s12 m4">
+          <div class="icon-block white-text">
+            <h2 class="center"><i class="material-icons">tab</i></h2>
+            <h5 class="center">Tab-based User Experience</h5>
+
+            <p class="light center">Connect multiple instances of the same tool to different organizations to work across environments and replicate changes quickly, all from inside the same window.</p>
+          </div>
+        </div>
+        
+        <div class="col s12 m4">
+          <div class="icon-block white-text">
+            <h2 class="center white-text"><i class="material-icons">code</i></h2>
+            <h5 class="center">Extensible</h5>
+
+            <p class="light center">Built from the ground up with the intention of being easily extensible. Magician utilizes modern patterns and technologies including WPF, MVVM, and MEF.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- todo add cards for current list of plugins -->
+  <div class="section" id="tricks">
     <div class="container">
-        <h2 class="header text_b">Work </h2>
-        <div class="row">
-            <div class="col s12 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="img/project1.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
-                        <p><a href="#">Project link</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
-                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
-                    </div>
-                </div>
+      <div class="row center">
+        <h4 class="header col s12 light">Built-in Tricks</h4>
+      </div>
+      <div class="row center">
+        <div class="col l6 s12">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="img/bulk-workflow-executor.png">
             </div>
-            <div class="col s12 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="img/project2.jpeg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
-                        <p><a href="#">Project link</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
-                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
-                    </div>
-                </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Bulk Workflow Executor<i class="material-icons right">more_vert</i></span>
             </div>
-            <div class="col s12 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="img/project3.png">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
-                        <p><a href="#">Project link</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
-                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
-                    </div>
-                </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Bulk Workflow Executor<i class="material-icons right">close</i></span>
+              <p>Select a view of records, then pick an on-demand workflow to run against <b>all</b> records in that view.</p>
             </div>
-            <div class="col s12 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="img/project4.jpg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
-                        <p><a href="#">Project link</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
-                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="img/project5.png">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
-                        <p><a href="#">Project link</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
-                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m4 l4">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="img/project6.jpeg">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Project Title <i class="mdi-navigation-more-vert right"></i></span>
-                        <p><a href="#">Project link</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
-                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="col l6 s12">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="img/export-assemblies.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Export Assemblies<i class="material-icons right">more_vert</i></span>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Export Assemblies<i class="material-icons right">close</i></span>
+              <p>Selectively export any plugin or workflow assemblies registered in a Dynamics CRM organization.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col l6 s12">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="img/role-compare.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Role Compare<i class="material-icons right">more_vert</i></span>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Role Compare<i class="material-icons right">close</i></span>
+              <p>Compare the privileges assigned to two different security roles in the same Dynamics CRM organization.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col l6 s12">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="img/users-by-role.png">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Users by Role<i class="material-icons right">more_vert</i></span>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Users by Role<i class="material-icons right">close</i></span>
+              <p>Select a security role, see all the users that have it in a specific Dynamics CRM organization.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<!--Parallax-->
-<div class="parallax-container">
-    <div class="parallax"><img src="img/parallax1.png"></div>
-</div>
-
-<!--Team-->
-<div class="section scrollspy" id="team">
+  <div class="section blue-grey darken-3" id="download">
     <div class="container">
-        <h2 class="header text_b"> Our Team </h2>
-        <div class="row">
-            <div class="col s12 m3">
-                <div class="card card-avatar">
-                    <div class="waves-effect waves-block waves-light">
-                        <img class="activator" src="img/avatar1.png">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Flash <br/>
-                            <small><em><a class="red-text text-darken-1" href="#">CEO</a></em></small></span>
-                        <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
-                                <i class="fa fa-linkedin-square"></i>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m3">
-                <div class="card card-avatar">
-                    <div class="waves-effect waves-block waves-light">
-                        <img class="activator" src="img/avatar2.png">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Cat Woman<br/>
-                            <small><em><a class="red-text text-darken-1" href="#">Designer</a></em></small>
-                        </span>
-                        <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
-                                <i class="fa fa-linkedin-square"></i>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m3">
-                <div class="card card-avatar">
-                    <div class="waves-effect waves-block waves-light">
-                        <img class="activator" src="img/avatar3.png">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">
-                            Capt. America <br/>
-                            <small><em><a class="red-text text-darken-1" href="#">CMO</a></em></small></span>
-                        <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
-                                <i class="fa fa-linkedin-square"></i>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m3">
-                <div class="card card-avatar">
-                    <div class="waves-effect waves-block waves-light">
-                        <img class="activator" src="img/avatar4.png">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Robin<br/>
-                            <small><em><a class="red-text text-darken-1" href="#">Developer</a></em></small></span>
-                        <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
-                                <i class="fa fa-facebook-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
-                                <i class="fa fa-linkedin-square"></i>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="row center">
+          <h4 class="header col s12 white-text light">Ready to get started?</h4>
+      </div>
+      <div class="row center">
+        <a href="http://www.github.com/gotdibbs/magician/releases/latest" id="download-button" class="btn-large waves-effect waves-light blue-accent">Download</a>
+      </div>
     </div>
-</div>
+  </div>
 
-<!--Footer-->
-<footer id="contact" class="page-footer default_color scrollspy">
-    <div class="container">  
-        <div class="row">
-            <div class="col l6 s12">
-                <form class="col s12" action="contact.php" method="post">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <i class="mdi-action-account-circle prefix white-text"></i>
-                            <input id="icon_prefix" name="name" type="text" class="validate white-text">
-                            <label for="icon_prefix" class="white-text">First Name</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <i class="mdi-communication-email prefix white-text"></i>
-                            <input id="icon_email" name="email" type="email" class="validate white-text">
-                            <label for="icon_email" class="white-text">Email-id</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="mdi-editor-mode-edit prefix white-text"></i>
-                            <textarea id="icon_prefix2" name="message" class="materialize-textarea white-text"></textarea>
-                            <label for="icon_prefix2" class="white-text">Message</label>
-                        </div>
-                        <div class="col offset-s7 s5">
-                            <button class="btn waves-effect waves-light red darken-1" type="submit">Submit
-                                <i class="mdi-content-send right white-text"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">joashpereira.com</h5>
-                <ul>
-                    <li><a class="white-text" href="http://www.joashpereira.com/">Home</a></li>
-                    <li><a class="white-text" href="http://www.joashpereira.com/blog">Blog</a></li>
-                </ul>
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Social</h5>
-                <ul>
-                    <li>
-                        <a class="white-text" href="https://www.behance.net/joashp">
-                            <i class="small fa fa-behance-square white-text"></i> Behance
-                        </a>
-                    </li>
-                    <li>
-                        <a class="white-text" href="https://www.facebook.com/joash.c.pereira">
-                            <i class="small fa fa-facebook-square white-text"></i> Facebook
-                        </a>
-                    </li>
-                    <li>
-                        <a class="white-text" href="https://github.com/joashp">
-                            <i class="small fa fa-github-square white-text"></i> Github
-                        </a>
-                    </li>
-                    <li>
-                        <a class="white-text" href="https://www.linkedin.com/in/joashp">
-                            <i class="small fa fa-linkedin-square white-text"></i> Linkedin
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+  <div class="section" id="contribute">
+    <div class="container">
+      <div class="row">
+        <h4 class="header col s12 light center">Contributing</h4>
+        <p class="col s12 light">Feeling like you'd like to help out the community as well, get your hands a tid bit dirty, and create a trick of your own to throw in our hat? Whether it is in the form of a new trick to help save others from the monotony you've dealt with, or some improvements you can see needing to be made to the core of Magician, we'd love to hear your thoughts, see your ideas, and refine Magician accordingly until it glistens in the sun. But not like a vampire. Like anything else. Please.</p>
+        <p class="col s12 light">There are a few things you need to know before you get started though, we have a few guidelines to make sure we're working in a friendly, positive environment as well as keeping the codebase consistent and concise. Accordingly, we've compiled a basic guide to help point you in the right direction. Your task, should you choose to accept, is to read these guides before you contribute. If you have any issues, please feel free to open an issue on GitHub or contact us using the information at the bottom of this page.</p>
+      </div>
+      <div class="row center">
+        <a href="https://github.com/gotdibbs/magician/blob/master/Building%20a%20Trick.md" class="btn-large waves-effect waves-light">Read the Manual</a>
+      </div>
     </div>
-    <div class="footer-copyright default_color">
-        <div class="container">
-            Made by <a class="white-text" href="http://joashpereira.com">Joash Pereira</a>. Thanks to <a class="white-text" href="http://materializecss.com/">materializecss</a>
+  </div>
+
+  <footer class="page-footer blue-grey darken-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Who is GotDibbs?</h5>
+          <p class="grey-text text-lighten-4">Senior Developer at Sonoma Partners, Chicago Parks District Volunteer Docent, Hawkeye. Fan of all things JavaScript, some things Microsoft, and all the food.</p>
         </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Contributors</h4>
+
+          <div class="chip">
+            <img src="https://avatars.githubusercontent.com/u/1540648?v=3" alt="photo of william dibbern">
+            William Dibbern
+          </div>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Contact</h5>
+          <ul>
+            <li><a class="white-text" href="https://www.github.com/gotdibbs">gotdibbs@github</a></li>
+            <li><a class="white-text" href="https://www.gotdibbs.com">gotdibbs@internets</a></li>
+            <li><a class="white-text" href="https://www.linkedin.com/in/williamdibbern">gotdibbs@linkedin</a></li>
+            <li><a class="white-text" href="https://www.twitter.com/gotdibbs/">gotdibbs@twitter</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-</footer>
+    <div class="footer-copyright">
+      <div class="container">
+      Thanks to <a class="white-text" href="http://materializecss.com">Materialize</a> for the CSS framework, some icons made by <a class="white-text" href="http://www.freepik.com" title="Freepik">Freepik</a> from <a class="white-text
+       href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>.
+      </div>
+    </div>
+  </footer>
 
 
-    <!--  Scripts-->
-    <script src="min/plugin-min.js"></script>
-    <script src="min/custom-min.js"></script>
+  <!--  Scripts-->
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/lodash.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
 
-    </body>
+  </body>
 </html>
