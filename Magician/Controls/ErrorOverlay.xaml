@@ -26,6 +26,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="8"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -48,7 +49,8 @@
                    Grid.Column="1"
                    Grid.Row="1"
                    FontWeight="Normal"
-                   Text="Unknown Error" />
+                   Text="Unknown Error"
+                   TextWrapping="Wrap" />
 
                 <Button Grid.Column="1"
                     HorizontalAlignment="Right"
