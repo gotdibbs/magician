@@ -417,7 +417,7 @@ namespace Magician.RoleCompare.ViewModels
                     SelectedRole.Name,
                     SelectedSecondaryRole.Name);
                 dlg.DefaultExt = ".csv";
-                dlg.Filter = "CSV Files (.csv)|.csv";
+                dlg.Filter = "CSV Files |*.csv";
 
                 var result = dlg.ShowDialog();
 
@@ -467,7 +467,7 @@ namespace Magician.RoleCompare.ViewModels
 
                     writer.NextRecord();
 
-                    foreach (var record in Comparisons)
+                    foreach (var record in Comparisons.OrderBy(c => c.Name))
                     {
                         writer.WriteField(record.IsMatchYesNo);
                         writer.WriteField(record.EntityName);
