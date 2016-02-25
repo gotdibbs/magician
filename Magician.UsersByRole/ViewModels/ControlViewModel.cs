@@ -5,6 +5,7 @@ using Magician.Connect;
 using Magician.UsersByRole.Models;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Query;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -104,7 +105,7 @@ namespace Magician.UsersByRole.ViewModels
             IsBusy = false;
         }
 
-        private Task<IEnumerable<Role>> LoadRoles()
+        private Task<List<Role>> LoadRoles()
         {
             return Task.Run(() =>
             {
@@ -123,7 +124,15 @@ namespace Magician.UsersByRole.ViewModels
                     Name = e["name"] as string
                 });
 
-                return roles;
+                roles = roles.Concat(new Role[] {
+                    new Role
+                    {
+                        RoleId = Guid.Empty,
+                        Name = " -- Users without an assigned role -- "
+                    }
+                });
+
+                return roles.OrderBy(r => r.Name).ToList();
             });
         }
 
@@ -151,8 +160,19 @@ namespace Magician.UsersByRole.ViewModels
                 query.NoLock = true;
                 query.ColumnSet = new ColumnSet("domainname", "fullname", "systemuserid");
                 query.AddOrder("fullname", OrderType.Ascending);
-                var userroles = query.AddLink("systemuserroles", "systemuserid", "systemuserid");
-                userroles.LinkCriteria.AddCondition("roleid", ConditionOperator.Equal, SelectedRole.RoleId);
+
+                if (SelectedRole.RoleId == Guid.Empty)
+                {
+                    var userroles = query.AddLink("systemuserroles", "systemuserid", "systemuserid", JoinOperator.LeftOuter);
+                    userroles.EntityAlias = "roles";
+
+                    query.Criteria.AddCondition("roles", "roleid", ConditionOperator.Null);
+                }
+                else
+                {
+                    var userroles = query.AddLink("systemuserroles", "systemuserid", "systemuserid");
+                    userroles.LinkCriteria.AddCondition("roleid", ConditionOperator.Equal, SelectedRole.RoleId);
+                }
 
                 var result = _service.RetrieveMultiple(query);
 
