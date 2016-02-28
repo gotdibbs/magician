@@ -11,6 +11,7 @@
     <AssemblyName>Magician.WebResourceLiveSync</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetPlatformVersion>8.0</TargetPlatformVersion>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -94,6 +95,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Windows.Data" />
+    <Reference Include="Windows.Foundation" />
+    <Reference Include="Windows.UI" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -103,11 +107,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Helpers\FileWatcher.cs" />
+    <Compile Include="Helpers\Toaster.cs" />
+    <Compile Include="Model\CompareResult.cs" />
     <Compile Include="Model\DirectoryItem.cs" />
+    <Compile Include="Model\FileItem.cs" />
+    <Compile Include="Model\FolderItem.cs" />
     <Compile Include="Model\Solution.cs" />
     <Compile Include="Model\UpdateHeaderMessage.cs" />
     <Compile Include="Model\WebResource.cs" />
     <Compile Include="Model\WebResourceMapping.cs" />
+    <Compile Include="Model\WebResourceType.cs" />
     <Compile Include="ViewModels\ControlViewModel.cs" />
     <Compile Include="Views\Control.xaml.cs">
       <DependentUpon>Control.xaml</DependentUpon>
@@ -151,6 +161,18 @@
       <Name>Magician</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\file.png" />
+    <Resource Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\check.png" />
+    <Resource Include="Resources\sync.png" />
+    <Resource Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\unknown.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
