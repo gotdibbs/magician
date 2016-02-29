@@ -2,20 +2,20 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Magician.Connect;
+using Magician.WebResourceLiveSync.Helpers;
 using Magician.WebResourceLiveSync.Model;
+using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Query;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Microsoft.Xrm.Sdk;
-using System.IO;
-using Magician.WebResourceLiveSync.Helpers;
+using Encoder = Magician.WebResourceLiveSync.Helpers.Encoder;
 
 namespace Magician.WebResourceLiveSync.ViewModels
 {
@@ -108,9 +108,11 @@ namespace Magician.WebResourceLiveSync.ViewModels
 
         private Toaster _toaster;
 
+        // TODO: file comparison for images needs byte-level comparison
         // TODO: autosync creates and updates(on/offable w/ completed notification)
         // TODO: compare modifiedby user and datetime before upload
         // TODO: handle delete/rename resource
+        // TODO: handle resume autosync
         // TODO: store profiles solution/directory combo (future)
         // TODO: download resources
         public ControlViewModel(Messenger messenger)
@@ -227,7 +229,7 @@ namespace Magician.WebResourceLiveSync.ViewModels
             RaisePropertyChanged(() => AutoSyncState);
         }
 
-        private async void RefreshTree()
+        private async Task RefreshTree()
         {
             IsBusy = true;
 
@@ -322,15 +324,18 @@ namespace Magician.WebResourceLiveSync.ViewModels
         {
             if (item.IsFile)
             {
-                item.IsSynching = true;
-                item.IsUpToDate = item.IsOutOfDate = false;
+                var file = (FileItem)item;
 
-                var result = await CheckExistingResource((FileItem)item);
+                file.IsSynching = true;
+                file.IsUpToDate = file.IsOutOfDate = false;
+
+                var result = await CheckExistingResource(file);
 
                 if (result != null)
                 {
-                    item.IsUpToDate = result.IsMatch;
-                    item.IsOutOfDate = !result.IsMatch;
+                    file.IsUpToDate = result.IsMatch;
+                    file.IsOutOfDate = !result.IsMatch;
+                    file.ResourceId = result.ResourceId;
                 }
 
                 item.IsSynching = false;
@@ -364,7 +369,7 @@ namespace Magician.WebResourceLiveSync.ViewModels
 
                     var fileText = File.ReadAllText(item.FullName.OriginalString);
 
-                    var resourceText = Base64Decode(resource["content"] as string);
+                    var resourceText = Encoder.DecodeBas64(resource["content"] as string);
 
                     return new CompareResult
                     {
@@ -379,28 +384,6 @@ namespace Magician.WebResourceLiveSync.ViewModels
 
                 return null;
             });
-        }
-
-        /// <summary>
-        /// Base64 decode file contents, then write to disk and re-read to ensure
-        /// comparisons are as accurate as possible. We seem to have some encoding issues
-        /// without the additioanl write to disk read steps.
-        /// </summary>
-        /// <param name="base64text"></param>
-        /// <returns>file contents</returns>
-        private string Base64Decode(string base64text)
-        {
-            var tempFile = Path.GetTempFileName();
-
-            var bytes = System.Convert.FromBase64String(base64text);
-
-            File.WriteAllBytes(tempFile, bytes);
-
-            var text = File.ReadAllText(tempFile);
-
-            File.Delete(tempFile);
-
-            return text;
         }
 
         private void SetupFilewatcher()
@@ -423,13 +406,13 @@ namespace Magician.WebResourceLiveSync.ViewModels
 
         private async void FileWatchUpate(object sender, FileSystemEventArgs e)
         {
-            _toaster.Show("Web Resource Live Sync", "File changed.");
+            //_toaster.Show("Web Resource Live Sync", "File changed.");
 
             if (e.ChangeType == WatcherChangeTypes.Created ||
                 e.ChangeType == WatcherChangeTypes.Renamed ||
                 e.ChangeType == WatcherChangeTypes.Deleted)
             {
-                RefreshTree();
+                await RefreshTree();
                 return;
             }
 
@@ -452,6 +435,8 @@ namespace Magician.WebResourceLiveSync.ViewModels
             fileItem.LastWriteTime = fileLastWriteTime;
 
             await MapResource(fileItem);
+
+            await UpdateResource(fileItem);
         }
 
         private FileItem FindFileItemByPath(string fullName)
@@ -490,6 +475,34 @@ namespace Magician.WebResourceLiveSync.ViewModels
             }
 
             return null;
+        }
+
+        private async Task UpdateResource(FileItem fileItem)
+        {
+            if (SelectedSolution == null)
+            {
+                return;
+            }
+
+            var entity = fileItem.ConvertToEntity(SelectedSolution.CustomizationPrefix);
+
+            await Update(entity);
+        }
+
+        private Task Create(Entity entity)
+        {
+            return Task.Run(() =>
+            {
+                _service.Create(entity);
+            });
+        }
+
+        private Task Update(Entity entity)
+        {
+            return Task.Run(() =>
+            {
+                _service.Update(entity);
+            });
         }
     }
 }

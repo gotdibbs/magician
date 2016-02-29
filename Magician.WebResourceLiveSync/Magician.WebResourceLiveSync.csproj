@@ -107,11 +107,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Helpers\Encoder.cs" />
     <Compile Include="Helpers\FileWatcher.cs" />
     <Compile Include="Helpers\Toaster.cs" />
     <Compile Include="Model\CompareResult.cs" />
     <Compile Include="Model\DirectoryItem.cs" />
     <Compile Include="Model\FileItem.cs" />
+    <Compile Include="Model\FileItemExtensions.cs" />
     <Compile Include="Model\FolderItem.cs" />
     <Compile Include="Model\Solution.cs" />
     <Compile Include="Model\UpdateHeaderMessage.cs" />

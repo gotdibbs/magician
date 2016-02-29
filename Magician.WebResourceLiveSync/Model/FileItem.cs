@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Magician.WebResourceLiveSync.Model
 {
     public class FileItem : DirectoryItem
     {
+        public Guid? ResourceId { get; set; }
+
         public Uri RelativePath { get; set; }
 
         public DateTime LastWriteTime { get; set; }
@@ -79,22 +76,6 @@ namespace Magician.WebResourceLiveSync.Model
         public FileItem()
         {
             IsFile = true;
-        }
-    }
-
-    public static class FileExtensions
-    {
-        public static FileItem ConvertToFile(this FileInfo file, Uri localDirectory)
-        {
-            var fullName = new Uri(file.FullName);
-
-            return new FileItem
-            {
-                Name = file.Name,
-                FullName = fullName,
-                RelativePath = localDirectory.MakeRelativeUri(fullName),
-                LastWriteTime = file.LastWriteTimeUtc
-            };
         }
     }
 }
