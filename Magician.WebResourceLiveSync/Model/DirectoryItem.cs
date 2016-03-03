@@ -110,5 +110,35 @@ namespace Magician.WebResourceLiveSync.Model
         {
             Items = new ObservableCollection<DirectoryItem>();
         }
+
+        public DirectoryItem FindItemByPath(string path)
+        {
+            if (FullName.OriginalString == path)
+            {
+                return this;
+            }
+            else if (Items == null || Items.Count == 0)
+            {
+                return null;
+            }
+
+            foreach (var item in Items)
+            {
+                if (item.FullName.OriginalString == path)
+                {
+                    return item;
+                }
+
+                var result = item.FindItemByPath(path);
+
+                if (result != null)
+                {
+                    return result;
+                }
+                // else keep searching
+            }
+
+            return null;
+        }
     }
 }

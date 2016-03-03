@@ -2,12 +2,14 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Magician.Connect;
+using Magician.WebResourceLiveSync.Data;
 using Magician.WebResourceLiveSync.Helpers;
 using Magician.WebResourceLiveSync.Model;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Sdk.Query;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -100,7 +102,7 @@ namespace Magician.WebResourceLiveSync.ViewModels
 
         private Connector _connector;
 
-        private OrganizationServiceProxy _service;
+        private CrmService _service;
 
         private Messenger _messenger;
 
@@ -143,7 +145,7 @@ namespace Magician.WebResourceLiveSync.ViewModels
 
             IsBusy = true;
 
-            _service = _connector.OrganizationServiceProxy;
+            _service = new CrmService(_connector.OrganizationServiceProxy);
 
             ConnectText = "Reconnect";
 
@@ -160,66 +162,12 @@ namespace Magician.WebResourceLiveSync.ViewModels
             IsBusy = false;
         }
 
-        private Task<IOrderedEnumerable<Solution>> LoadSolutions()
+        private Task<IEnumerable<Solution>> LoadSolutions()
         {
             return Task.Run(() =>
             {
-                var query = new QueryExpression("solution");
-                query.NoLock = true;
-                query.ColumnSet = new ColumnSet("uniquename", "solutionid", "publisherid");
-                query.Criteria.AddCondition("ismanaged", ConditionOperator.Equal, false);
-                query.Criteria.AddCondition("uniquename", ConditionOperator.NotIn, new string[] { "Active", "Basic" });
-                query.AddOrder("uniquename", OrderType.Ascending);
-                var publisher = query.AddLink("publisher", "publisherid", "publisherid", JoinOperator.Inner);
-                publisher.EntityAlias = "publisher";
-                publisher.Columns = new ColumnSet("customizationprefix");
-
-                var result = _service.RetrieveMultiple(query);
-
-                var solutions = result.Entities.Select(e => new Solution
-                {
-                    SolutionId = e.Id,
-                    Name = e["uniquename"] as string,
-                    PublisherId = GetPublisherId(e),
-                    CustomizationPrefix = GetCustomizationPrefix(e)
-                });
-
-                return solutions.OrderBy(r => r.Name);
+                return _service.RetrieveSolutions();
             });
-        }
-
-        private Guid GetPublisherId(Entity e)
-        {
-            if (e.Contains("publisherid"))
-            {
-                var er = e.GetAttributeValue<EntityReference>("publisherid");
-
-                if (er != null)
-                {
-                    return er.Id;
-                }
-            }
-
-            throw new Exception(string.Format("Could not locate the publisher for solution {0}.", e["uniquename"]));
-        }
-
-        private string GetCustomizationPrefix(Entity e)
-        {
-            var prefix = string.Empty;
-
-            if (e.Contains("publisher.customizationprefix"))
-            {
-                var alias = e.GetAttributeValue<AliasedValue>("publisher.customizationprefix");
-
-                prefix = alias != null ? alias.Value as string : string.Empty;
-            }
-
-            if (string.IsNullOrEmpty(prefix))
-            {
-                throw new Exception(string.Format("Could not parse customization prefix for solution {0}.", e["uniquename"]));
-            }
-
-            return prefix;
         }
 
         private void ToggleAutoSync()
@@ -350,22 +298,14 @@ namespace Magician.WebResourceLiveSync.ViewModels
         {
             return Task.Run(() =>
             {
-                var query = new QueryExpression("webresource");
-                query.ColumnSet = new ColumnSet("webresourceid", "content", "modifiedon");
-                query.Criteria.FilterOperator = LogicalOperator.Or;
-                query.Criteria.AddCondition("name", ConditionOperator.Equal, SelectedSolution.CustomizationPrefix + "_" + item.RelativePath.ToString());
-                query.Criteria.AddCondition("name", ConditionOperator.Equal, SelectedSolution.CustomizationPrefix + "_/" + item.RelativePath.ToString());
-                query.PageInfo = new PagingInfo
-                {
-                    Count = 2,
-                    PageNumber = 1
-                };
+                var matches = _service.SearchWebResourcesByName(
+                    SelectedSolution.CustomizationPrefix + "_" + item.RelativePath.ToString(),
+                    SelectedSolution.CustomizationPrefix + "_/" + item.RelativePath.ToString())
+                    .ToList();
 
-                var result = _service.RetrieveMultiple(query);
-
-                if (result != null && result.Entities.Count == 1)
+                if (matches != null && matches.Count == 1)
                 {
-                    var resource = result.Entities[0];
+                    var resource = matches[0];
 
                     var fileText = File.ReadAllText(item.FullName.OriginalString);
 
@@ -377,7 +317,7 @@ namespace Magician.WebResourceLiveSync.ViewModels
                         IsMatch = fileText == resourceText
                     };
                 }
-                else if (result != null && result.Entities.Count > 1)
+                else if (matches != null && matches.Count > 1)
                 {
                     throw new Exception("Too many matches found for resource at: " + item.FullName);
                 }
@@ -446,32 +386,12 @@ namespace Magician.WebResourceLiveSync.ViewModels
                 return null;
             }
 
-            return FindFileItemByPathRecursive(fullName, Files.First());
-        }
+            var root = Files.First();
+            var result = root.FindItemByPath(fullName);
 
-        private FileItem FindFileItemByPathRecursive(string search, DirectoryItem directoryItem)
-        {
-            if (directoryItem == null || directoryItem.Items == null || directoryItem.Items.Count == 0)
+            if (result != null && result is FileItem)
             {
-                return null;
-            }
-
-            foreach (var item in directoryItem.Items)
-            {
-                if (item.IsFile && item.FullName.OriginalString == search)
-                {
-                    return (FileItem)item;
-                }
-                else if (item.IsFolder)
-                {
-                    var result = FindFileItemByPathRecursive(search, item);
-
-                    if (result != null)
-                    {
-                        return result;
-                    }
-                    // else keep searching
-                }
+                return (FileItem)result;
             }
 
             return null;

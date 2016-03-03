@@ -107,6 +107,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Data\CrmService.cs" />
     <Compile Include="Helpers\Encoder.cs" />
     <Compile Include="Helpers\FileWatcher.cs" />
     <Compile Include="Helpers\Toaster.cs" />
