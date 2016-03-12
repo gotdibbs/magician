@@ -52,7 +52,7 @@
       <div class="row">
         <div class="col s12 m4">
           <div class="icon-block white-text">
-            <h2 class="center"><i class="material-icons">group_work</i></h2>
+            <h2 class="center"><img class="magician-about-icon" src="img/the-one-ring.png" /></h2>
             <h5 class="center">One App to Rule them All</h5>
 
             <p class="light center">Pick from out of the box tools, tools created by the community, or develop and install your own company specific tools, they can all be hosted under one roof.</p>
@@ -61,7 +61,7 @@
 
         <div class="col s12 m4">
           <div class="icon-block white-text">
-            <h2 class="center"><i class="material-icons">tab</i></h2>
+            <h2 class="center"><i class="material-icons magician-about-icon">tab</i></h2>
             <h5 class="center">Tab-based User Experience</h5>
 
             <p class="light center">Connect multiple instances of the same tool to different organizations to work across environments and replicate changes quickly, all from inside the same window.</p>
@@ -70,7 +70,7 @@
         
         <div class="col s12 m4">
           <div class="icon-block white-text">
-            <h2 class="center white-text"><i class="material-icons">code</i></h2>
+            <h2 class="center white-text"><i class="material-icons magician-about-icon">code</i></h2>
             <h5 class="center">Extensible</h5>
 
             <p class="light center">Built from the ground up with the intention of being easily extensible. Magician utilizes modern patterns and technologies including WPF, MVVM, and MEF.</p>
@@ -92,12 +92,28 @@
             <div class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="img/bulk-workflow-executor.png">
             </div>
-            <div class="card-content">
+            <div class="card-content activator">
               <span class="card-title activator grey-text text-darken-4">Bulk Workflow Executor<i class="material-icons right">more_vert</i></span>
+              <p><a href="javascript:void(0)" class="activator">Read more...</a></p>
             </div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">Bulk Workflow Executor<i class="material-icons right">close</i></span>
-              <p>Select a view of records, then pick an on-demand workflow to run against <b>all</b> records in that view.</p>
+              <p>Select a view of records, then pick an on-demand workflow to run against <b>all</b> records in that view. Note that this may seriously bog down your asynchronous processing service.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col l6 s12">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="img/team-deploy.png">
+            </div>
+            <div class="card-content activator">
+              <span class="card-title activator grey-text text-darken-4">Deploy Teams<i class="material-icons right">more_vert</i></span>
+              <p><a href="javascript:void(0)" class="activator">Read more...</a></p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Deploy Teams<i class="material-icons right">close</i></span>
+              <p>Selectively export and import teams and their roles. Maintains unique identifiers so that you can be confident that views, workflows, etc. using them will not need to be updated after a solution import.</p>
             </div>
           </div>
         </div>
@@ -106,12 +122,13 @@
             <div class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="img/export-assemblies.png">
             </div>
-            <div class="card-content">
+            <div class="card-content activator">
               <span class="card-title activator grey-text text-darken-4">Export Assemblies<i class="material-icons right">more_vert</i></span>
+              <p><a href="javascript:void(0)" class="activator">Read more...</a></p>
             </div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">Export Assemblies<i class="material-icons right">close</i></span>
-              <p>Selectively export any plugin or workflow assemblies registered in a Dynamics CRM organization.</p>
+              <p>Selectively export any plugin or workflow assemblies registered in a Dynamics CRM organization. Helps with recovering assemblies when you (very sad day) can't find the source code. Note that this tool does not disassemble the assemblies, it only extracts the compiled code from the organization.</p>
             </div>
           </div>
         </div>
@@ -120,12 +137,13 @@
             <div class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="img/role-compare.png">
             </div>
-            <div class="card-content">
+            <div class="card-content activator">
               <span class="card-title activator grey-text text-darken-4">Role Compare<i class="material-icons right">more_vert</i></span>
+              <p><a href="javascript:void(0)" class="activator">Read more...</a></p>
             </div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">Role Compare<i class="material-icons right">close</i></span>
-              <p>Compare the privileges assigned to two different security roles in the same Dynamics CRM organization.</p>
+              <p>Compare the privileges assigned to two different security roles in the same Dynamics CRM organization. Very helpful if you're troubleshooting why one user can do something that another user can't. You can also export the results to excel if you need to compare across organizations or pivot the data some other way that this tool cannot.</p>
             </div>
           </div>
         </div>
@@ -134,12 +152,13 @@
             <div class="card-image waves-effect waves-block waves-light">
               <img class="activator" src="img/users-by-role.png">
             </div>
-            <div class="card-content">
+            <div class="card-content activator">
               <span class="card-title activator grey-text text-darken-4">Users by Role<i class="material-icons right">more_vert</i></span>
+              <p><a href="javascript:void(0)" class="activator">Read more...</a></p>
             </div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">Users by Role<i class="material-icons right">close</i></span>
-              <p>Select a security role, see all the users that have it in a specific Dynamics CRM organization.</p>
+              <p>Select a security role, see all the users that have it in a specific Dynamics CRM organization. Pretty simple. If you need to just see users without a security role, there is actually a native view provided, so feel free to use that first.</p>
             </div>
           </div>
         </div>

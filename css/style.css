@@ -19,7 +19,17 @@
     width: 128px;
 }
 
+.icon-block .magician-about-icon {
+    font-size: 96px;
+    height: 96px;
+    width: 96px;
+}
+
 .section {
     padding-bottom: 3rem;
     padding-top: 3rem;
+}
+
+.card-reveal p {
+    text-align: left;
 }
