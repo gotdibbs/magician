@@ -52,7 +52,7 @@
                             <DataGridTextColumn Header="Name" Width="Auto" Binding="{Binding Name}" SortDirection="Ascending" IsReadOnly="True" />
                             <DataGridTextColumn Header="Type" Width="Auto" Binding="{Binding Type}" IsReadOnly="True"  />
                             <DataGridTextColumn Header="Business Unit" Width="100" Binding="{Binding BusinessUnitDisplayName}" IsReadOnly="True"  />
-                            <DataGridTextColumn Header="Administrator" Width="100" Binding="{Binding Administrator}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="Administrator" Width="100" Binding="{Binding AdministratorDomainName}" IsReadOnly="True" />
                             <DataGridTextColumn Header="# of Security Roles" Width="Auto" Binding="{Binding SecurityRolesCount}" IsReadOnly="True" />
                         </DataGrid.Columns>
                     </DataGrid>
@@ -110,7 +110,7 @@
                             <DataGridTextColumn Header="Name" Width="Auto" Binding="{Binding Name}" SortDirection="Ascending" IsReadOnly="True" />
                             <DataGridTextColumn Header="Type" Width="Auto" Binding="{Binding Type}" IsReadOnly="True"  />
                             <DataGridTextColumn Header="Business Unit" Width="100" Binding="{Binding BusinessUnitDisplayName}" IsReadOnly="True"  />
-                            <DataGridTextColumn Header="Administrator" Width="100" Binding="{Binding Administrator}" IsReadOnly="True" />
+                            <DataGridTextColumn Header="Administrator" Width="100" Binding="{Binding AdministratorDomainName}" IsReadOnly="True" />
                             <DataGridTextColumn Header="# of Security Roles" Width="Auto" Binding="{Binding SecurityRolesCount}" IsReadOnly="True" />
                         </DataGrid.Columns>
                     </DataGrid>
