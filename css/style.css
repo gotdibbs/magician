@@ -14,6 +14,10 @@
     font-size: inherit;
 }
 
+.magician-banner .row:last-of-type {
+    margin-bottom: 0;
+}
+
 .magician-logo {
     height: 128px;
     width: 128px;
