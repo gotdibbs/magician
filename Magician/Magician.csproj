@@ -154,13 +154,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\ErrorOverlay.xaml.cs">
-      <DependentUpon>ErrorOverlay.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ExtensionFramework\ITrickData.cs" />
-    <Compile Include="ExtensionFramework\TrickDescriptionAttribute.cs" />
-    <Compile Include="ExtensionFramework\ITrick.cs" />
-    <Compile Include="Controls\Trick.cs" />
+
     <Compile Include="Models\LoadMessage.cs" />
     <Compile Include="Presenters\RecipesPresenter.cs" />
     <Compile Include="ViewModels\TricksViewModel.cs" />
@@ -168,14 +162,10 @@
     <Compile Include="Views\TricksTab.xaml.cs">
       <DependentUpon>TricksTab.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\ErrorOverlay.xaml">
+    <Resource Include="Resources\ResourceDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\ResourceDictionary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    </Resource>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -227,12 +217,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Magician.ConnectWindow\Magician.Connect.csproj">
-      <Project>{743a7beb-7fd8-4309-800e-6e3f0d755620}</Project>
-      <Name>Magician.Connect</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\icon.png" />
     <Resource Include="Resources\logo.png" />
   </ItemGroup>
@@ -259,13 +243,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\sadrabbit.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Tricks\Magician.DeployTeams.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Tricks\Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Magician.ExtensionFramework\Magician.ExtensionFramework.csproj">
+      <Project>{c6c5a10e-917d-4084-b102-3de3bcab31ae}</Project>
+      <Name>Magician.ExtensionFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tricks\Magician.ConnectWindow.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

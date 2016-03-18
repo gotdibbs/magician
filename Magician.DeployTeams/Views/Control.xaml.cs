@@ -1,6 +1,6 @@
-﻿using Magician.Controls;
-using Magician.DeployTeams.ViewModels;
+﻿using Magician.DeployTeams.ViewModels;
 using Magician.ExtensionFramework;
+using Magician.ExtensionFramework.Controls;
 
 namespace Magician.DeployTeams.Views
 {

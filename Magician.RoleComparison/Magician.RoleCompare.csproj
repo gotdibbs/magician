@@ -181,9 +181,9 @@
       <Name>Magician.Connect</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\Magician\Magician.csproj">
-      <Project>{f3792f29-6c38-4a3c-8f95-93ee4e58a51b}</Project>
-      <Name>Magician</Name>
+    <ProjectReference Include="..\Magician.ExtensionFramework\Magician.ExtensionFramework.csproj">
+      <Project>{c6c5a10e-917d-4084-b102-3de3bcab31ae}</Project>
+      <Name>Magician.ExtensionFramework</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

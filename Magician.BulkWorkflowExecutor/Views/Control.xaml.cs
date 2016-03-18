@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using Magician.BulkWorkflowExecutor.Models;
 using Magician.BulkWorkflowExecutor.ViewModels;
-using Magician.Controls;
 using Magician.ExtensionFramework;
+using Magician.ExtensionFramework.Controls;
 using System.Windows.Controls;
 
 namespace Magician.BulkWorkflowExecutor.Views

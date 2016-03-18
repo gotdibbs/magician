@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Magician.Views"
-        xmlns:magic="clr-namespace:Magician.Controls"
+        xmlns:magic="clr-namespace:Magician.ExtensionFramework.Controls;assembly=Magician.ExtensionFramework"
         xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
         mc:Ignorable="d"
         Icon="pack://application:,,,/Magician;component/Resources/logo_margin.png"

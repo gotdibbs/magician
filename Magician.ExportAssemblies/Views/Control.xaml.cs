@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using Magician.Controls;
 using Magician.ExtensionFramework;
+using Magician.ExtensionFramework.Controls;
 using Magician.ExportAssemblies.Models;
 using Magician.ExportAssemblies.ViewModels;
 using System.Windows.Controls;

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:Magician.DeployTeams.Views"
-             xmlns:magic="clr-namespace:Magician.Controls;assembly=Magician"
+             xmlns:magic="clr-namespace:Magician.ExtensionFramework.Controls;assembly=Magician.ExtensionFramework"
              mc:Ignorable="d" 
              Background="{StaticResource MaterialDesignPaper}"
              d:DesignHeight="500" d:DesignWidth="600">

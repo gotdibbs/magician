@@ -3,7 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Magician.Controls
+namespace Magician.ExtensionFramework.Controls
 {
     public class Trick : UserControl, ITrick
     {
@@ -11,7 +11,7 @@ namespace Magician.Controls
         {
             Resources.MergedDictionaries.Add(new ResourceDictionary
             {
-                Source = new System.Uri("/Magician;component/Resources/ResourceDictionary.xaml", UriKind.Relative)
+                Source = new System.Uri("/Magician.ExtensionFramework;component/Resources/ResourceDictionary.xaml", UriKind.Relative)
             });
         }
     }

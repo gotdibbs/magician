@@ -1,4 +1,4 @@
-﻿using Magician.Controls;
+﻿using Magician.ExtensionFramework.Controls;
 using Magician.Presenters;
 using Magician.ViewModels;
 using System.Collections.Generic;

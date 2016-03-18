@@ -23,6 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.DeployTeams", "Magician.DeployTeams\Magician.DeployTeams.csproj", "{F7FE5E7F-F799-46AE-90D9-D2B13BC6D461}"
 EndProject
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.ExtensionFramework", "Magician.ExtensionFramework\Magician.ExtensionFramework.csproj", "{C6C5A10E-917D-4084-B102-3DE3BCAB31AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tricks", "Tricks", "{1ECBEDA4-B555-4ED3-ABBF-49CBD4622D39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,8 +62,19 @@ Global
 		{F7FE5E7F-F799-46AE-90D9-D2B13BC6D461}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7FE5E7F-F799-46AE-90D9-D2B13BC6D461}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7FE5E7F-F799-46AE-90D9-D2B13BC6D461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6C5A10E-917D-4084-B102-3DE3BCAB31AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C5A10E-917D-4084-B102-3DE3BCAB31AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C5A10E-917D-4084-B102-3DE3BCAB31AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6C5A10E-917D-4084-B102-3DE3BCAB31AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7FC0B4B9-59EE-4419-8B63-B46013070EE4} = {1ECBEDA4-B555-4ED3-ABBF-49CBD4622D39}
+		{A6F67324-E9A2-42EA-A0F7-20AD4C9B60A5} = {1ECBEDA4-B555-4ED3-ABBF-49CBD4622D39}
+		{7C7B1E0E-C559-4F5D-BAAC-6728DD100CB1} = {1ECBEDA4-B555-4ED3-ABBF-49CBD4622D39}
+		{31B964D8-71FF-4EAC-8FE3-8C08F0347C98} = {1ECBEDA4-B555-4ED3-ABBF-49CBD4622D39}
+		{F7FE5E7F-F799-46AE-90D9-D2B13BC6D461} = {1ECBEDA4-B555-4ED3-ABBF-49CBD4622D39}
 	EndGlobalSection
 EndGlobal

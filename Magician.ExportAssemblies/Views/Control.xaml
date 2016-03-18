@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Magician.ExportAssemblies.Views"
-             xmlns:magic="clr-namespace:Magician.Controls;assembly=Magician"
+             xmlns:magic="clr-namespace:Magician.ExtensionFramework.Controls;assembly=Magician.ExtensionFramework"
              mc:Ignorable="d" 
              Background="{StaticResource MaterialDesignPaper}"
              d:DesignHeight="500" d:DesignWidth="600">

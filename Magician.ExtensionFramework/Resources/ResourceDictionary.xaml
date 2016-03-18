@@ -21,9 +21,6 @@
         <!-- Material Design: MahApps Compatibility -->
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Defaults.xaml">
         </ResourceDictionary>
-        <!-- Dragablz Material Design -->
-        <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml">
-        </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
     <!-- MahApps Brushes -->
     <SolidColorBrush x:Key="HighlightBrush" Color="{DynamicResource Primary700}" />
@@ -41,6 +38,4 @@
     <SolidColorBrush x:Key="RightArrowFill" Color="{DynamicResource Primary500}" />
     <SolidColorBrush x:Key="IdealForegroundColorBrush" Color="{DynamicResource Primary500Foreground}" />
     <SolidColorBrush x:Key="IdealForegroundDisabledBrush" Color="{DynamicResource Primary500}" Opacity="0.4" />
-    <!-- Dragablz Material Design -->
-    <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}" />
 </ResourceDictionary>
