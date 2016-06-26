@@ -93,10 +93,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Models\ExecuteResponse.cs" />
-    <Compile Include="Models\View.cs" />
     <Compile Include="Models\UpdateHeaderMessage.cs" />
-    <Compile Include="Models\Workflow.cs" />
     <Compile Include="ViewModels\ControlViewModel.cs" />
     <Compile Include="Views\Control.xaml.cs">
       <DependentUpon>Control.xaml</DependentUpon>
@@ -131,6 +128,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Magician.BulkWorkflowExecutor.Logic\Magician.BulkWorkflowExecutor.Logic.csproj">
+      <Project>{b0818f16-f2c2-431f-b032-d79f15b4f21e}</Project>
+      <Name>Magician.BulkWorkflowExecutor.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Magician.ConnectWindow\Magician.Connect.csproj">
       <Project>{743a7beb-7fd8-4309-800e-6e3f0d755620}</Project>
       <Name>Magician.Connect</Name>

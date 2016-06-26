@@ -1,22 +1,17 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Magician.BulkWorkflowExecutor.Logic;
+using Magician.BulkWorkflowExecutor.Logic.Models;
 using Magician.BulkWorkflowExecutor.Models;
 using Magician.Connect;
-using Microsoft.Crm.Sdk.Messages;
-using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Client;
-using Microsoft.Xrm.Sdk.Messages;
-using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Xml.Linq;
 
 namespace Magician.BulkWorkflowExecutor.ViewModels
 {
@@ -108,7 +103,7 @@ namespace Magician.BulkWorkflowExecutor.ViewModels
 
         private Connector _connector;
 
-        private OrganizationServiceProxy _service;
+        private ExecuteBulkWorkflowLogic _logic;
 
         private Messenger _messenger;
 
@@ -138,7 +133,14 @@ namespace Magician.BulkWorkflowExecutor.ViewModels
 
             IsBusy = true;
 
-            _service = _connector.OrganizationServiceProxy;
+            if (_logic == null)
+            {
+                _logic = new ExecuteBulkWorkflowLogic(_connector.OrganizationServiceProxy);
+            }
+            else
+            {
+                _logic.OrganizationService = _connector.OrganizationServiceProxy;
+            }
 
             ConnectText = "Reconnect";
 
@@ -158,27 +160,7 @@ namespace Magician.BulkWorkflowExecutor.ViewModels
         {
             return Task.Run(() =>
             {
-                var query = new QueryExpression("workflow");
-                query.NoLock = true;
-                query.Distinct = true;
-                query.ColumnSet = new ColumnSet("name", "workflowid", "primaryentity");
-                query.Criteria.AddCondition("ondemand", ConditionOperator.Equal, true);
-                query.Criteria.AddCondition("primaryentity", ConditionOperator.NotNull);
-                query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 1); // active
-                query.Criteria.AddCondition("statuscode", ConditionOperator.Equal, 2); // published
-                query.Criteria.AddCondition("type", ConditionOperator.Equal, 1); // definition
-
-                var result = _service.RetrieveMultiple(query);
-
-                return result.Entities.Select(e =>
-                {
-                    return new Workflow
-                    {
-                        WorkflowId = e.Id,
-                        Name = e["name"] as string,
-                        LogicalName = e["primaryentity"] as string
-                    };
-                }).OrderBy(e => e.Name).ToList();
+                return _logic.RetrieveWorkflows();
             });
         }
 
@@ -202,49 +184,7 @@ namespace Magician.BulkWorkflowExecutor.ViewModels
         {
             return Task.Run(() =>
             {
-                var query = new QueryExpression("savedquery");
-                query.NoLock = true;
-                query.ColumnSet = new ColumnSet("name", "savedqueryid", "fetchxml");
-                query.Criteria.AddCondition("querytype", ConditionOperator.Equal, 0);
-                query.Criteria.AddCondition("returnedtypecode", ConditionOperator.Equal, entityLogicalName);
-                query.Criteria.AddCondition("fetchxml", ConditionOperator.NotNull);
-                query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0); //active
-
-                var results = _service.RetrieveMultiple(query);
-
-                var views = results.Entities.Select(e =>
-                {
-                    return new View
-                    {
-                        ViewId = e.Id,
-                        Name = e["name"] as string,
-                        FetchXml = e["fetchxml"] as string
-                    };
-                }).ToList();
-
-                query = new QueryExpression("userquery");
-                query.NoLock = true;
-                query.ColumnSet = new ColumnSet("name", "userqueryid", "fetchxml");
-                query.Criteria.AddCondition("querytype", ConditionOperator.Equal, 0);
-                query.Criteria.AddCondition("returnedtypecode", ConditionOperator.Equal, entityLogicalName);
-                query.Criteria.AddCondition("fetchxml", ConditionOperator.NotNull);
-                query.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0); //active
-
-                results = _service.RetrieveMultiple(query);
-
-                views.AddRange(results.Entities.Select(e =>
-                {
-                    return new View
-                    {
-                        ViewId = e.Id,
-                        Name = e["name"] as string,
-                        FetchXml = e["fetchxml"] as string
-                    };
-                }));
-
-                views.Sort(delegate (View v1, View v2) { return v1.Name.CompareTo(v2.Name); });
-
-                return views;
+                return _logic.RetrieveViews(entityLogicalName);
             });
         }
 
@@ -272,7 +212,7 @@ namespace Magician.BulkWorkflowExecutor.ViewModels
                     continue;
                 }
 
-                var response = await ExecuteWorkflow(query, page, SelectedWorkflow.WorkflowId);
+                var response = await ExecuteWorkflow(query, SelectedWorkflow.WorkflowId, page);
 
                 if (response.HasError)
                 {
@@ -301,66 +241,15 @@ namespace Magician.BulkWorkflowExecutor.ViewModels
         {
             return Task.Run(() =>
             {
-                var request = new FetchXmlToQueryExpressionRequest();
-                request.FetchXml = view.FetchXml;
-                var response = (FetchXmlToQueryExpressionResponse)_service.Execute(request);
-
-                return response.Query;
+                return _logic.GetQuery(view.FetchXml);
             });
         }
 
-        private Task<ExecuteResponse> ExecuteWorkflow(QueryExpression query, int page, Guid workflowId)
+        private Task<ExecuteResponse> ExecuteWorkflow(QueryExpression query, Guid workflowId, int page)
         {
             return Task.Run(() =>
             {
-                var response = new ExecuteResponse();
-
-                try
-                {
-                    query.PageInfo.Count = 100;
-                    query.PageInfo.PageNumber = page;
-
-                    var result = _service.RetrieveMultiple(query);
-
-                    response.HasMoreResults = result.MoreRecords;
-                    response.ProcessedCount = result.Entities.Count;
-
-                    var em = new ExecuteMultipleRequest
-                    {
-                        Settings = new ExecuteMultipleSettings
-                        {
-                            ContinueOnError = false,
-                            ReturnResponses = true
-                        }
-                    };
-
-                    em.Requests = new OrganizationRequestCollection();
-                    em.Requests.AddRange(result.Entities.Select(e => new ExecuteWorkflowRequest
-                    {
-                        EntityId = e.Id,
-                        WorkflowId = workflowId
-                    }));
-
-                    var emResponse = (ExecuteMultipleResponse)_service.Execute(em);
-
-                    if (emResponse.IsFaulted)
-                    {
-                        var firstFault = emResponse.Responses.Where(r => r.Fault != null)
-                            .FirstOrDefault();
-
-                        response.HasError = true;
-                        response.ErrorMessage = firstFault != null ? firstFault.Fault.Message : "Unknown execute workflow error";
-
-                        return response;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    response.HasError = true;
-                    response.ErrorMessage = ex.Message;
-                }
-
-                return response;
+                return _logic.Execute(query, workflowId, page);
             });
         }
 
