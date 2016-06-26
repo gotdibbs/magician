@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
 using Magician.Connect;
-using Magician.DeployTeams.Models;
+using Magician.DeployTeams.Logic.Models;
 using Microsoft.Xrm.Sdk.Client;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -56,7 +55,5 @@ namespace Magician.DeployTeams.ViewModels
         public ICommand ConnectCommand { get; set; }
 
         protected Connector _connector;
-
-        protected OrganizationServiceProxy _service;
     }
 }

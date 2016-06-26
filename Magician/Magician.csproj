@@ -154,7 +154,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-
     <Compile Include="Models\LoadMessage.cs" />
     <Compile Include="Presenters\RecipesPresenter.cs" />
     <Compile Include="ViewModels\TricksViewModel.cs" />
@@ -258,6 +257,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Tricks\Magician.ConnectWindow.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tricks\Magician.DeployTeams.Logic.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

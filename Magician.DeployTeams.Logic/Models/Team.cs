@@ -2,11 +2,8 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Magician.DeployTeams.Models
+namespace Magician.DeployTeams.Logic.Models
 {
     public class Team : ObservableObject
     {
