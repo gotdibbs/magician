@@ -7,9 +7,6 @@ namespace Magician.Powershell
     [Cmdlet(VerbsCommon.Set, "CrmTeams")]
     public class SetCrmTeams : CrmCmdlet
     {
-        [Parameter(Mandatory = true, HelpMessage = "Connection string for CRM (uses CrmConnector from Xrm Tooling)")]
-        public string ConnectionString { get; set; }
-
         [Parameter(Mandatory = true, HelpMessage = "Path to JSON file created using Get-CrmTeams command")]
         public string FileName { get; set; }
 

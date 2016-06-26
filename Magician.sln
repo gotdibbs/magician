@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.DeployTeams.Logic"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.Powershell", "Magician.Powershell\Magician.Powershell.csproj", "{799E6092-1818-49EA-AA4E-222F3A5DE6C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Magician.BulkWorkflowExecutor.Logic", "Magician.BulkWorkflowExecutor.Logic\Magician.BulkWorkflowExecutor.Logic.csproj", "{B0818F16-F2C2-431F-B032-D79F15B4F21E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{799E6092-1818-49EA-AA4E-222F3A5DE6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{799E6092-1818-49EA-AA4E-222F3A5DE6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{799E6092-1818-49EA-AA4E-222F3A5DE6C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0818F16-F2C2-431F-B032-D79F15B4F21E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0818F16-F2C2-431F-B032-D79F15B4F21E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0818F16-F2C2-431F-B032-D79F15B4F21E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0818F16-F2C2-431F-B032-D79F15B4F21E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,5 +94,6 @@ Global
 		{31B964D8-71FF-4EAC-8FE3-8C08F0347C98} = {1ECBEDA4-B555-4ED3-ABBF-49CBD4622D39}
 		{F7FE5E7F-F799-46AE-90D9-D2B13BC6D461} = {1ECBEDA4-B555-4ED3-ABBF-49CBD4622D39}
 		{A45A7C4E-7137-4691-9738-5DAFE4B00BF6} = {1ECBEDA4-B555-4ED3-ABBF-49CBD4622D39}
+		{B0818F16-F2C2-431F-B032-D79F15B4F21E} = {1ECBEDA4-B555-4ED3-ABBF-49CBD4622D39}
 	EndGlobalSection
 EndGlobal
