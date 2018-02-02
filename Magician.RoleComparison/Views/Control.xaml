@@ -17,7 +17,7 @@
             <RowDefinition Height="4" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <StackPanel Grid.Row="0"
                     Orientation="Horizontal"
                     HorizontalAlignment="Stretch"
@@ -26,6 +26,7 @@
                 <TextBlock Text="{Binding ConnectText, FallbackValue=Connect}"/>
             </Button>
             <Button Command="{Binding Path=ExportCommand}" IsEnabled="{Binding IsComparing, FallbackValue=False}" FontSize="14" Content="Export to Excel" />
+            <Button Command="{Binding Path=ExportAllCommand}" IsEnabled="{Binding IsConnected, FallbackValue=False}" FontSize="14" Content="Export All Roles to Excel" />
         </StackPanel>
 
         <Grid Grid.Row="2" Margin="8">
@@ -36,7 +37,7 @@
                 <RowDefinition Height="4" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
+
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80" />

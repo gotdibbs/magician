@@ -3,6 +3,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
 using Microsoft.Xrm.Tooling.Connector;
 using System;
+using System.Net;
 
 namespace Magician.Connect
 {
@@ -18,6 +19,8 @@ namespace Magician.Connect
 
         public bool Connect()
         {
+            ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+
             var connectionDialog = new ConnectWindow();
             connectionDialog.ShowDialog();
 

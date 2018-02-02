@@ -85,6 +85,13 @@ namespace Magician.RoleCompare.ViewModels
             set { Set(ref _isComparing, value); }
         }
 
+        private bool _isConnected = false;
+        public bool IsConnected
+        {
+            get { return _isConnected; }
+            set { Set(ref _isConnected, value); }
+        }
+
         private bool _isBusy = true;
         public bool IsBusy
         {
@@ -95,6 +102,8 @@ namespace Magician.RoleCompare.ViewModels
         public ICommand ConnectCommand { get; set; }
 
         public ICommand ExportCommand { get; set; }
+
+        public ICommand ExportAllCommand { get; set; }
 
         private List<EntityMetadata> _entityMetadata;
 
@@ -112,6 +121,7 @@ namespace Magician.RoleCompare.ViewModels
 
             ConnectCommand = new RelayCommand(() => Connect());
             ExportCommand = new RelayCommand(() => Export());
+            ExportAllCommand = new RelayCommand(() => ExportAll());
         }
 
         private async void Connect()
@@ -128,6 +138,8 @@ namespace Magician.RoleCompare.ViewModels
             }
 
             IsBusy = true;
+
+            IsConnected = true;
 
             _service = _connector.OrganizationServiceProxy;
 
@@ -195,6 +207,42 @@ namespace Magician.RoleCompare.ViewModels
             }
 
             SecondaryRoles = new ObservableCollection<Role>(Roles.Where(r => r.Name != SelectedRole.Name));
+        }
+
+        private async Task<List<RoleExport>> GetAll()
+        {
+            var results = new List<RoleExport>();
+
+            foreach (var role in Roles)
+            {
+                var privileges = await LoadPrivileges(role.RoleId);
+
+                foreach (var p in privileges)
+                {
+                    var export = new RoleExport
+                    {
+                        PrivilegeId = p.PrivilegeId,
+                        EntityName = p.LogicalName,
+                        AccessRight = p.AccessRight,
+                        PrivilegeName = p.Name,
+                        RoleName = role.Name,
+                        Depth = p.Depth,
+                    };
+
+                    results.Add(export);
+                }
+            }
+
+            results.Sort(delegate (RoleExport r1, RoleExport r2) {
+                // Sort By Role Name Ascending
+                var result = r1.RoleName.CompareTo(r2.RoleName);
+                // Then Sort By Entity Display Name
+                result = result != 0 ? result : r1.EntityName.CompareTo(r2.EntityName);
+                // Finally Sorty By Access Right (Create, Read, etc.)
+                return result != 0 ? result : r1.AccessRight.CompareTo(r2.AccessRight);
+            });
+
+            return results;
         }
 
         private async void Compare()
@@ -399,6 +447,85 @@ namespace Magician.RoleCompare.ViewModels
                 MessageBox.Show("Error encountered in GetDepth");
                 return "ERROR";
             }
+        }
+
+        private async void ExportAll()
+        {
+            IsBusy = true;
+
+            try
+            {
+                var temp = Path.GetTempPath();
+                var tempFile = Path.Combine(temp, "allroles.csv");
+
+                var results = await GetAll();
+
+                await WriteAllRoles(results, tempFile);
+
+                var dlg = new SaveFileDialog();
+                dlg.FileName = "All Security Roles";
+                dlg.DefaultExt = ".csv";
+                dlg.Filter = "CSV Files |*.csv";
+
+                var result = dlg.ShowDialog();
+
+                if (result == true)
+                {
+                    var filename = dlg.FileName;
+
+                    if (File.Exists(filename))
+                    {
+                        File.Delete(filename);
+                    }
+
+                    File.Move(tempFile, filename);
+
+                    if (MessageBox.Show("Open the spreadsheet using your default editor?", string.Empty, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        Process.Start(filename);
+                    }
+                }
+                else
+                {
+                    File.Delete(tempFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error was encountered while attempting to save an export of all roles. Detail: " + ex.Message);
+            }
+
+            IsBusy = false;
+        }
+
+        private Task WriteAllRoles(List<RoleExport> results, string tempFile)
+        {
+            return Task.Run(() =>
+            {
+                using (var sw = new StreamWriter(tempFile))
+                {
+                    var writer = new CsvWriter(sw);
+                    writer.WriteField("Security Role");
+                    writer.WriteField("Entity");
+                    writer.WriteField("Access Right");
+                    writer.WriteField("Privilege Name");
+                    writer.WriteField("Privilege ID");
+
+                    writer.NextRecord();
+
+                    foreach (var record in results.OrderBy(c => c.RoleName))
+                    {
+                        writer.WriteField(record.RoleName);
+                        writer.WriteField(record.EntityName);
+                        writer.WriteField(record.AccessRight);
+                        writer.WriteField(record.Depth);
+                        writer.WriteField(record.PrivilegeName);
+                        writer.WriteField(record.PrivilegeId);
+
+                        writer.NextRecord();
+                    }
+                }
+            });
         }
 
         private async void Export()
